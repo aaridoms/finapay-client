@@ -7,16 +7,18 @@ import Signup from './pages/Signup'
 import NotFound from './pages/NotFound'
 import Error from './pages/Error'
 import Navbar from './components/Navbar'
+import NavbarUser from './components/NavbarUser'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-     <h1>FINAPAY</h1>
+     <h1 className="text-3xl font-bold underline">FINAPAY</h1>
 
-    <Navbar />
-
+    {/* <Navbar /> */}
+    <NavbarUser />
+  
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />

@@ -29,7 +29,7 @@ export default function Login(){
 
       localStorage.setItem("authToken", response.data.authToken)
       await verifyToken()
-      navigate("/")
+      navigate("/account/summary")
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);

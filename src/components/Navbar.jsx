@@ -1,17 +1,11 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
+
+import { Link } from "react-router-dom";
+
 
 export default function Navbar() {
 
-  const navigate = useNavigate()
-  const {isUserActive, verifyToken} = useContext(AuthContext)
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken")
-    verifyToken()
-    navigate("/")
-  }
+ 
 
   return (
     <nav>
@@ -21,7 +15,7 @@ export default function Navbar() {
       <br />
       <Link to={"/signup"}>SIGNUP</Link>
       <br />
-      {isUserActive === true && <button onClick={handleLogout}>LOGOUT</button>}
+     
     </nav>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState ,useContext } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -8,24 +8,31 @@ import NotFound from './pages/NotFound'
 import Error from './pages/Error'
 import Navbar from './components/Navbar'
 import NavbarUser from './components/NavbarUser'
+import { AuthContext } from "./context/auth.context";
+import Summary from './pages/Summary'
+import Profile from './pages/Profile'
 
 function App() {
   const [count, setCount] = useState(0)
+  const {isUserActive} = useContext(AuthContext)
 
   return (
     <>
-     <h1 className="text-3xl font-bold underline">FINAPAY</h1>
+{isUserActive ===true ?<NavbarUser /> :<Navbar /> }
 
-    {/* <Navbar /> */}
-    <NavbarUser />
   
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/account/summary" element={<Summary />} />
+      <Route path="/account/profile" element={<Profile />} />
+
+
 
       <Route path="/error" element={<Error />} />
       <Route path="*" element={<NotFound />} />
+
     </Routes>
 
     </>

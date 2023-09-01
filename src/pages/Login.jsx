@@ -9,7 +9,7 @@ export default function Login(){
   const {verifyToken} = useContext(AuthContext)
   const navigate = useNavigate()
 
-  const redirect = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("")

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -14,17 +14,39 @@ import {
 import logoImg from "../assets/finapayLogoSinFondo.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import service from "../services/service.config";
+
 export default function App() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [userProfile, setUserProfile] = useState();
 
-    const {isUserActive, verifyToken} = useContext(AuthContext)
-    const handleLogout = () => {
-        localStorage.removeItem("authToken")
-        verifyToken()
-        navigate("/")
-      }
+  const { isUserActive, verifyToken } = useContext(AuthContext);
 
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await service.get("/account/profile");
+      console.log(response.data);
+      setUserProfile(response.data);
+    } catch (error) {
+      console.log(error);
+      navigate("/error");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    verifyToken();
+    navigate("/");
+  };
+
+  if (userProfile === undefined) {
+    return <h3>BUSCANDO</h3>;
+  }
 
   return (
     <Navbar>
@@ -66,17 +88,24 @@ export default function App() {
               color="secondary"
               name="profilePic"
               size="sm"
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              src={userProfile.profilePic}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Signed in as </p>
-              <p className="font-semibold">EMAIL@EXAMPLE.COM</p>
+              <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
-            <DropdownItem key="settings" onClick={()=>{ navigate("/account/profile")}}>My Settings</DropdownItem>
+            <DropdownItem
+              key="settings"
+              onClick={() => {
+                navigate("/account/profile");
+              }}
+            >
+              My Settings
+            </DropdownItem>
             <DropdownItem onClick={handleLogout} key="logout" color="danger">
-                Logout
+              Logout
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

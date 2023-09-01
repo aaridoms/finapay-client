@@ -13,7 +13,7 @@ import Summary from './pages/Summary'
 import Profile from './pages/Profile'
 
 function App() {
-  const [count, setCount] = useState(0)
+
   const {isUserActive} = useContext(AuthContext)
 
   return (

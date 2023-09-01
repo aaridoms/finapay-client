@@ -63,7 +63,7 @@ export default function App() {
 
       <NavbarContent className="sm:flex gap-4" justify="left">
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/account/expenses">
             EXPENSES
           </Link>
         </NavbarItem>

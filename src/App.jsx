@@ -30,7 +30,7 @@ function App() {
       <Route path="/account/summary" element={<Summary />} />
       <Route path="/account/profile" element={<Profile />} />
       <Route path="/account/expenses" element={<Expenses />} />
-      <Route path="/account/expenses/:expenseID/details" element={<ExpenseDetails />} />
+      <Route path="/account/expenses/:idExpense/details" element={<ExpenseDetails />} />
 
       <Route path="/error" element={<Error />} />
       <Route path="*" element={<NotFound />} />

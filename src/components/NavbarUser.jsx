@@ -52,13 +52,15 @@ export default function App() {
   return (
     <Navbar>
       <NavbarBrand>
-        <img
-          src={logoImg}
-          alt="logo"
-          fill="none"
-          viewBox="0 0 32 32"
-          width="150"
-        />
+        <Link href="/account/summary" color="dark-blue">
+          <img
+            src={logoImg}
+            alt="logo"
+            fill="none"
+            viewBox="0 0 32 32"
+            width="150"
+          />
+        </Link>
       </NavbarBrand>
 
       <NavbarContent className="sm:flex gap-4" justify="left">

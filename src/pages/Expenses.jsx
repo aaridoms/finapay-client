@@ -22,6 +22,16 @@ export default function Expenses() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await service.delete(`/account/expenses/${id}/delete`)
+      getData()
+      navigate('/account/expenses')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   if (userExpenses === undefined) {
     return <h3>..Buscando</h3>;
   }
@@ -37,8 +47,9 @@ export default function Expenses() {
         <div>{/* <h2>AQUI SE FILTRARAN GASTOS</h2> */}</div>
         <div>{userExpenses.map((eachExpense) => {
             return  (
-                <div>
+                <div key={eachExpense._id}>
                     <Link to={`/account/expenses/${eachExpense._id}/details`}>{eachExpense.name}</Link>
+                    <Button color="danger" variant="bordered" onClick={ ()=>handleDelete(eachExpense._id) }> Delete Expense </Button>
                 </div>
             )
             

@@ -30,8 +30,9 @@ export default function App() {
   const getData = async () => {
     try {
       const response = await service.get("/account/profile");
-      console.log(response.data);
+      // console.log(response.data);
       setUserProfile(response.data);
+      // getData();
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -92,7 +93,7 @@ export default function App() {
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownItem key="profile" className="h-14 gap-2" textValue="hola">
               <p className="font-semibold">Signed in as </p>
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>

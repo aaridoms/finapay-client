@@ -16,20 +16,14 @@ export default function AddFunds(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (props.userData && props.userData.funds) {
-      setFunds(props.userData.funds);
-    }
-  }, [props.userData]);
-
   const handleFundsForm = async (e) => {
     e.preventDefault();
     try {
-        console.log(funds)
+      // console.log(funds)
       await service.post("/account/add-funds", {
         funds,
       });
-      props.setUserData((prevUserData) => ({ ...prevUserData, funds }));
+      props.getData();
       setIsPopoverOpen(false);
     } catch (error) {
       console.log(error);

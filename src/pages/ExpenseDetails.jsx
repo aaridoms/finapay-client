@@ -3,11 +3,12 @@ import { useEffect, useState } from "react"
 import service from "../services/service.config"
 import moment from "moment"
 import {Button} from "@nextui-org/react";
+import ExpenseForm from "../components/ExpenseForm";
 
 export default function ExpenseDetails() {
-
+  const isEdit = true
   const [ oneExpense, setOneExpense ] = useState()
-
+  
   const navigate = useNavigate()
 
   const params = useParams()
@@ -45,6 +46,8 @@ export default function ExpenseDetails() {
       <p>{oneExpense.amount}</p>
       <p>{oneExpense.notes}</p>
       <p>{moment(oneExpense.date).format('lll')}</p>
+
+      <ExpenseForm isEdit={isEdit} idExpense={params.idExpense} getData={getData} oneExpense={oneExpense}/>
       <Button color="danger" variant="bordered" onClick={ handleDelete }>
         Delete user
       </Button>

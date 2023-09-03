@@ -3,7 +3,7 @@ import service from "../services/service.config";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-
+import ExpenseForm from "../components/ExpenseForm"
 export default function Expenses() {
   const navigate = useNavigate();
 
@@ -39,9 +39,7 @@ export default function Expenses() {
   return (
     <>
       <div>Expenses</div>
-      <Button color="success" variant="shadow">
-        Add an expense
-      </Button>
+      <ExpenseForm userExpenses={userExpenses} getData={getData} />
       <div>
         <div>{/* <h2>AQUI IRAN GRAFICAS</h2> */}</div>
         <div>{/* <h2>AQUI SE FILTRARAN GASTOS</h2> */}</div>

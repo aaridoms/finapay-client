@@ -13,6 +13,7 @@ import Summary from './pages/Summary'
 import Profile from './pages/Profile'
 import Expenses from './pages/Expenses'
 import ExpenseDetails from './pages/ExpenseDetails'
+import Investment from './pages/Investment'
 
 function App() {
 
@@ -31,7 +32,8 @@ function App() {
       <Route path="/account/profile" element={<Profile />} />
       <Route path="/account/expenses" element={<Expenses />} />
       <Route path="/account/expenses/:idExpense/details" element={<ExpenseDetails />} />
-
+      <Route path="/account/investment" element={<Investment />} />
+ 
       <Route path="/error" element={<Error />} />
       <Route path="*" element={<NotFound />} />
 

@@ -49,7 +49,7 @@ export default function ExpenseDetails() {
 
       <ExpenseForm isEdit={isEdit} idExpense={params.idExpense} getData={getData} oneExpense={oneExpense}/>
       <Button color="danger" variant="bordered" onClick={ handleDelete }>
-        Delete user
+        Delete Expense
       </Button>
     </div>
 

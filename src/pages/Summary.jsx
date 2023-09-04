@@ -39,7 +39,7 @@ export default function Summary() {
   return (
     <div>
       <h1>HELLO {userData.username.toUpperCase()}</h1>
-      <h3>TOTAL CASH: {userData.funds}</h3>
+      <h3>TOTAL CASH: {userData.funds.toFixed(2)}€</h3>
       <div></div>
       <div>
         <AddFunds getData={getData} />

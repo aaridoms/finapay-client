@@ -20,9 +20,11 @@ export default function AddInvestment(props) {
     e.preventDefault();
     try {
       // console.log(funds)
-      await service.post(`/account/investments/${props.idInvestment}/join`, {
+      const userInfo = await service.post(`/account/investments/${props.idInvestment}/join`, {
         amount,
       });
+      props.setInfoToUser(userInfo.data.infoToUser)
+      console.log(userInfo.data)
       props.getData();
       setIsPopoverOpen(false);
     } catch (error) {

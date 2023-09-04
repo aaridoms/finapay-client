@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
+import { uploadImageService } from "../services/upload.services";
 import {
   Popover,
   PopoverTrigger,
@@ -11,6 +12,7 @@ import {
   Card,
   CardBody,
 } from "@nextui-org/react";
+import defaultPic from "../assets/defaultPic.webp";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ export default function Profile() {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     getData();
@@ -28,6 +32,33 @@ export default function Profile() {
       setEmail(userProfile.email);
     }
   }, [userProfile]);
+
+  const handleFileUpload = async (event) => {
+    if (!event.target.files[0]) {
+      // to prevent accidentally clicking the choose file button and not selecting a file
+      return;
+    }
+
+    setIsUploading(true);
+
+    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    uploadData.append("image", event.target.files[0]);
+
+    try {
+      const response = await uploadImageService(uploadData);
+      // or below line if not using services
+      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
+
+      // setImageUrl(response.data.imageUrl);
+      //                          |
+      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
+
+      setIsUploading(false); // to stop the loading animation
+      getData();
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
   const getData = async () => {
     try {
@@ -80,9 +111,19 @@ export default function Profile() {
             <Image
               width={300}
               alt="NextUI hero Image"
-              src={userProfile.profilePic}
+              // src={userProfile.profilePic}
+              src={userProfile.profilePic || defaultPic}
+            />
+            <label>Image: </label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileUpload}
+              disabled={isUploading}
             />
           </div>
+          
+          {isUploading ? <h3>... uploading image</h3> : null}
           <div>
             <h1>Perfil de {userProfile.username} </h1>
             <h3>Email: {userProfile.email}</h3>

@@ -11,6 +11,7 @@ import {
   DropdownMenu,
   Avatar,
 } from "@nextui-org/react";
+import defaultPic from "../assets/defaultPic.webp";
 import logoImg from "../assets/finapayLogoSinFondo.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
@@ -91,7 +92,7 @@ export default function App() {
               color="secondary"
               name="profilePic"
               size="sm"
-              src={userProfile.profilePic}
+              src={userProfile.profilePic || defaultPic}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">

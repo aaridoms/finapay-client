@@ -30,9 +30,9 @@ export default function Investment() {
     try {
       const allInv = await service.get("/account/investments");
       const userInv = await service.get("/account/investments/user-investment");
-      console.log(allInv.data)
-      console.log(userInv.data)
-
+      // console.log(allInv.data)
+      // console.log(userInv.data)
+      console.log(infoToUser)
       setAllInvestment(allInv.data);
       setUserInvestment(userInv.data);
     } catch (error) {
@@ -61,11 +61,11 @@ if (allInvestment === undefined || userInvestment === undefined){
         <div>
           <h2>Join a investment</h2>
           <div>
-            {allInvestment.map((eachInvestment) => {
+            {allInvestment.map((eachInvestment, i) => {
               const { name, risk, interesRate, category, duration ,_id} =
                 eachInvestment;
               return (
-                <Card className="max-w-[400px]" key={_id}>
+                <Card className="max-w-[400px]" key={i}>
                   <CardHeader className="flex gap-3">
                     <div className="flex flex-col">
                       <p className="text-md">{name}</p>
@@ -86,7 +86,7 @@ if (allInvestment === undefined || userInvestment === undefined){
                   </CardBody>
                   <Divider />
                   <CardFooter>
-                   <AddInvestment getData={getData} idInvestment={_id} />
+                   <AddInvestment getData={getData} idInvestment={_id} setInfoToUser={setInfoToUser} />
                   </CardFooter>
                 </Card>
               );
@@ -118,7 +118,7 @@ if (allInvestment === undefined || userInvestment === undefined){
                     <p>
                       {risk}
                     </p>
-
+                    <p>{infoToUser}</p>
                   </CardBody>
                   <Divider />
                   

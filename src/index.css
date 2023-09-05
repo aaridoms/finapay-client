@@ -9,3 +9,17 @@
     }
   }
   
+  @media (min-width: 481px) and (max-width: 768px) {
+    body {
+      margin-left: 20px; /* Ajusta el margen según tus preferencias */
+      margin-right: 20px; /* Ajusta el margen según tus preferencias */
+    }
+  }
+  
+  /* Estilos para dispositivos móviles (hasta 480px de ancho) */
+  @media (max-width: 480px) {
+    body {
+      margin-left: 10px; /* Ajusta el margen según tus preferencias */
+      margin-right: 10px; /* Ajusta el margen según tus preferencias */
+    }
+  }

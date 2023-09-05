@@ -47,8 +47,8 @@ export default function Expenses() {
   }
 
   return (
-    <>
-      <div>Expenses</div>
+    <div className="flex flex-col gap-4">
+      <div>Check your list of Expenses</div>
       <ExpenseForm userExpenses={userExpenses} getData={getData} />
       <div>
         <div>{/* <h2>AQUI IRAN GRAFICAS</h2> */}</div>
@@ -60,19 +60,20 @@ export default function Expenses() {
               <Card key={i} className="w-full max-w-1/2 mx-auto">
                 <CardHeader className="flex justify-between items-center px-4">
                   <div className="flex gap-3">
-                    <h3>{eachExpense.name}</h3>
                     <h3>
-                      <b>{eachExpense.amount}€</b>
+                      <b>NAME: </b> {eachExpense.name}
+                    </h3>
+                    <h3>
+                      <b>Amount: </b>
+                      {eachExpense.amount}€
                     </h3>
                   </div>
-                  <div>
+                  <div className="flex gap-3">
                     <Button
                       href={`/account/expenses/${eachExpense._id}/details`}
                       as={Link}
                       color="primary"
-                     
                       variant="solid"
-                      
                       size="sm"
                     >
                       Details
@@ -82,10 +83,9 @@ export default function Expenses() {
                       color="danger"
                       variant="bordered"
                       onClick={() => handleDelete(eachExpense._id)}
-                      
                       size="sm"
                     >
-                      Delete 
+                      Delete
                     </Button>
                   </div>
                 </CardHeader>
@@ -94,6 +94,6 @@ export default function Expenses() {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }

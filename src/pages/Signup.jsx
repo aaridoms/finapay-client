@@ -44,97 +44,94 @@ export default function Signup() {
   };
 
   return (
-    <div
-  role="form"
-  className="flex flex-col gap-4 items-center text-center"
->
-  <div className="flex flex-col gap-4">
-    <h3 className="text-default-500 text-sm">SIGN UP</h3>
-    <div className="flex w-full flex-wrap items-end mb-6 gap-4">
-      <Input
-        aria-label="Username"
-        key="username"
-        type="text"
-        label="Username"
-        labelPlacement="outside"
-        value={username}
-        onChange={handleUsernameChange}
-        className="flex-grow"
-      />
-      <Input
-        aria-label="Email"
-        key="email"
-        type="email"
-        label="Email"
-        labelPlacement="outside"
-        value={email}
-        onChange={handleEmailChange}
-        className="flex-grow"
-      />
-    </div>
-  </div>
-  <div className="flex flex-col gap-2">
-    <div className="flex w-full flex-wrap items-end mb-6 gap-4">
-      <Input
-        aria-label="Password"
-        label="Password"
-        placeholder="Enter your password"
-        value={password}
-        onChange={handlePasswordChange}
-        className="flex-grow"
-        endContent={
-          <button
-          aria-label="Toggle password visibility"
-          className="outline-none"
-          type="button"
-          onClick={toggleVisibility}
+    <div role="form" className="flex flex-col gap-4 items-center text-center">
+      <div className="flex flex-col gap-4">
+        <h3 className="text-default-500 text-sm">SIGN UP</h3>
+        <div className="flex w-full flex-wrap items-end mb-6 gap-4">
+          <Input
+            aria-label="Username"
+            key="username"
+            type="text"
+            label="Username"
+            labelPlacement="outside"
+            value={username}
+            onChange={handleUsernameChange}
+            className="flex-grow"
+          />
+          <Input
+            aria-label="Email"
+            key="email"
+            type="email"
+            label="Email"
+            labelPlacement="outside"
+            value={email}
+            onChange={handleEmailChange}
+            className="flex-grow"
+          />
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex w-full flex-wrap items-end mb-6 gap-4">
+          <Input
+            aria-label="Password"
+            label="Password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={handlePasswordChange}
+            className="flex-grow"
+            endContent={
+              <button
+                aria-label="Toggle password visibility"
+                className="outline-none"
+                type="button"
+                onClick={toggleVisibility}
+              >
+                {isVisible ? (
+                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisible ? "text" : "password"}
+          />
+          <Input
+            aria-label="Repeat Password"
+            label="Repeat Password"
+            placeholder="Repeat your Password"
+            value={repitPassword}
+            onChange={handleRepeatPasswordChange}
+            className="flex-grow"
+            endContent={
+              <button
+                aria-label="Toggle repeat password visibility"
+                className="outline-none"
+                type="button"
+                onClick={toggleVisibilityTwo}
+              >
+                {isVisibleTwo ? (
+                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                ) : (
+                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                )}
+              </button>
+            }
+            type={isVisibleTwo ? "text" : "password"}
+          />
+        </div>
+        <div className="flex w-full flex-wrap items-center mb-6 gap-4">
+          <Button
+            role="button"
+            aria-label="Signup"
+            type="submit"
+            onClick={handleSignup}
+            className="flex-grow"
           >
-            {isVisible ? (
-              <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-            ) : (
-              <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-            )}
-          </button>
-        }
-        type={isVisible ? "text" : "password"}
-      />
-      <Input
-        aria-label="Repeat Password"
-        label="Repeat Password"
-        placeholder="Repeat your Password"
-        value={repitPassword}
-        onChange={handleRepeatPasswordChange}
-        className="flex-grow"
-        endContent={
-          <button
-          aria-label="Toggle repeat password visibility"
-          className="outline-none"
-          type="button"
-          onClick={toggleVisibilityTwo}
-          >
-            {isVisibleTwo ? (
-              <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-            ) : (
-              <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-            )}
-          </button>
-        }
-        type={isVisibleTwo ? "text" : "password"}
-      />
+            Signup
+          </Button>
+        </div>
+        {errorMessage ? <p className="text-center"> {errorMessage}</p> : null}
+      </div>
     </div>
-    <div className="flex w-full flex-wrap items-center mb-6 gap-4">
-      <Button
-        role="button"
-        aria-label="Signup"
-        type="submit"
-        onClick={handleSignup}
-        className="flex-grow"
-      >
-        Signup
-      </Button>
-    </div>
-    {errorMessage ? <p className="text-center"> {errorMessage}</p> : null}
-  </div>
-</div>
   );
 }

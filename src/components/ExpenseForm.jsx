@@ -103,7 +103,7 @@ export default function ExpenseForm(props) {
                   placeholder={
                     props.isEdit
                       ? props.oneExpense.amount
-                      : "How much money do you want to send?"
+                      : "Amount of the Expense"
                   }
                   type="number"
                   variant="bordered"

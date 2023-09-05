@@ -77,10 +77,10 @@ export default function AddFunds(props) {
                 }}
               />
               <Button
-                className="hidden"
+                
                 type="submit"
                 onClick={handleFundsForm}
-              />
+              >+</Button>
               {errorMessage ? (
                 <p className="flex justify-center" style={{ color: "red" }}>
                   {" "}

@@ -3,3 +3,31 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+.desktop-nav {
+  display: flex; /* se muestra por defecto */
+}
+
+.mobile-nav {
+  display: none; /* se esconde por defecto */
+}
+
+.mobile-menu {
+  display: none; /* el menú de hamburguesa se esconde por defecto */
+}
+
+.mobile-menu.open {
+  display: block; /* se muestra cuando está abierto */
+}
+
+/* Con CSS Media Queries, los estilos se aplican sólo si la condición se cumple. En este caso, pantalla de menos de 700px (tamaño de móvil) */
+@media (max-width: 700px) {
+  .desktop-nav {
+    display: none; /* se esconde en pantallas pequeñas */
+  }
+
+  .mobile-nav {
+    display: flex; /* se muestra en pantallas pequeñas */
+  }
+}

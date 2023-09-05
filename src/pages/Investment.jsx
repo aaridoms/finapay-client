@@ -8,9 +8,6 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Link,
-  Image,
-  Button,
 } from "@nextui-org/react";
 import AddInvestment from "../components/AddInvestment";
 import NewInvestment from "../components/NewInvestment";

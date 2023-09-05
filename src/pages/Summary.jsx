@@ -11,6 +11,7 @@ import {
 import TransactionForm from "../components/TransactionForm";
 import AddFunds from "../components/AddFunds";
 import moment from "moment/moment";
+import ChartBar from "../components/ChartBar";
 
 export default function Summary() {
   const [userData, setUserData] = useState();
@@ -49,28 +50,30 @@ export default function Summary() {
       <Card style={{ width: "500px" }}>
         {transactionData.map((transaction) => {
           return (
-            <Card className="max-w-[400px]" key={transaction._id}>
-              <CardHeader className="flex gap-3">
-                <Image
-                  alt="nextui logo"
-                  height={40}
-                  radius="sm"
-                  src={transaction.from._id === userData._id ? transaction.to.profilePic : transaction.from.profilePic}
-                  width={40}
-                />
-                <div className="flex flex-col">
-                  <p>{transaction.from._id === userData._id ? transaction.to.username : transaction.from.username}</p>
-                  <p className="text-small text-default-500">{moment(transaction.date).format('lll')}</p>
-                </div>
-                <div>
-                  {/* <p>{transaction.concept}</p> */}
-                  <p className="text-md">{transaction.from._id === userData._id ? `- ${transaction.amount}` : `+ ${transaction.amount}` }</p>
-                </div>
-              </CardHeader>
-            </Card>
+              <Card className="max-w-[400px]" key={transaction._id}>
+                <CardHeader className="flex gap-3">
+                  <Image
+                    alt="nextui logo"
+                    height={40}
+                    radius="sm"
+                    src={transaction.from._id === userData._id ? transaction.to.profilePic : transaction.from.profilePic}
+                    width={40}
+                  />
+                  <div className="flex flex-col">
+                    <p>{transaction.from._id === userData._id ? transaction.to.username : transaction.from.username}</p>
+                    <p className="text-small text-default-500">{moment(transaction.date).format('lll')}</p>
+                  </div>
+                  <div>
+                    {/* <p>{transaction.concept}</p> */}
+                    <p className="text-md">{transaction.from._id === userData._id ? `- ${transaction.amount}` : `+ ${transaction.amount}` }</p>
+                  </div>
+                </CardHeader>
+              </Card>
           );
         })}
       </Card>
+
+      <ChartBar transactionData={transactionData} userData={userData} />
     </div>
   );
 }

@@ -59,27 +59,27 @@ export default function NewInvestment(props) {
   return (
     <div>
       <Button onPress={onOpen} color={props.isEdit ? "warning" : "success"}>
-        {props.isEdit ? "Edit expense" : "New expense"}
+        Add Investment
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Add an expense
+                Add an Investment
               </ModalHeader>
               <ModalBody>
                 <Input
                   label="Name"
-                  placeholder="Name"
                   type="text"
                   variant="bordered"
                   value={name}
                   onChange={handleNameChange}
                 />
                 <Select
-                  label="Select a Category"
+                  label="Select Risk"
                   className="max-w-xs"
+                  placeholder="Low | Medium | High"
                   scrollShadowProps={{
                     isEnabled: false,
                   }}
@@ -99,11 +99,7 @@ export default function NewInvestment(props) {
 
                 <Select
                   label="Select a Category"
-                  placeholder={
-                    props.isEdit
-                      ? props.oneExpense.category
-                      : "Select a Category"
-                  }
+                  placeholder="Stocks, Bonds, Mutual Funds, ETFs..."
                   className="max-w-xs"
                   scrollShadowProps={{
                     isEnabled: false,
@@ -132,15 +128,13 @@ export default function NewInvestment(props) {
                 <Input
                   label="Interest Rate"
                   type="number"
+                  placeholder="%"
                   variant="bordered"
                   value={interesRate}
                   onChange={handleInteresRateChange}
                 />
                 <Input
                   label="Duration Time"
-                  placeholder={
-                    props.isEdit ? props.oneExpense.notes : "Text here..."
-                  }
                   type="text"
                   variant="bordered"
                   value={duration}
@@ -148,9 +142,6 @@ export default function NewInvestment(props) {
                 />
                 <Input
                   label="Notes"
-                  placeholder={
-                    props.isEdit ? props.oneExpense.notes : "Text here..."
-                  }
                   type="text"
                   variant="bordered"
                   value={notes}

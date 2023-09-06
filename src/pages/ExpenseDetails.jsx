@@ -12,6 +12,7 @@ import {
   Link,
   Image,
   Button,
+  Chip,
 } from "@nextui-org/react";
 
 export default function ExpenseDetails() {
@@ -56,20 +57,21 @@ export default function ExpenseDetails() {
         <CardHeader className="flex justify-between" >
          
             <p className="text-small text-default-500">
-              Category: {oneExpense.category}
+              <Chip color="default">{oneExpense.category}</Chip>
             </p>
-            <p className="text-md">Name:{oneExpense.name}</p>
-            <p>Amount: {oneExpense.amount} €</p>
+            <p className="text-md hover:font-bold">{oneExpense.name}</p>
+            <Chip color="success" variant="shadow" className="text-3xl font-bold">{oneExpense.amount.toFixed(2)} €</Chip>
+            {/* <p>Amount: {oneExpense.amount} €</p> */}
          
         </CardHeader>
         <Divider />
-        <CardBody > 
-          <p className="flex justify-center">{oneExpense.notes}</p>
+        <CardBody style={{ padding: "0px 50px 0px 50px" }} > 
+          <p className="flex justify-center text-center" >{oneExpense.notes}</p>
         </CardBody>
         <Divider />
         <CardFooter className="flex justify-between">
           <div>
-            <p>Created at {moment(oneExpense.date).format("lll")}</p>
+            <p>{moment(oneExpense.date).format("lll")}</p>
           </div>
           <div>
             <ExpenseForm

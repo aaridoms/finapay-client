@@ -3,7 +3,7 @@ import 'tailwindcss/tailwind.css'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-
+import { isMobile } from 'react-device-detect';
 import Signup from './pages/Signup'
 import NotFound from './pages/NotFound'
 import Error from './pages/Error'
@@ -15,6 +15,7 @@ import Profile from './pages/Profile'
 import Expenses from './pages/Expenses'
 import ExpenseDetails from './pages/ExpenseDetails'
 import Investment from './pages/Investment'
+import NavBarUserMovile from './components/NavBarUserMovile'
 
 function App() {
 
@@ -22,7 +23,17 @@ function App() {
 
   return (
     <>
-{isUserActive ===true ?<NavbarUser /> :<Navbar /> }
+{isUserActive === true ? (
+  isMobile ? (
+    // Componente de Navbar para dispositivos móviles
+    <NavBarUserMovile />
+  ) : (
+    // Componente de Navbar para escritorio y tablet
+    <NavbarUser />
+  )
+) : (
+  <Navbar />
+)}
 
   
     <Routes>

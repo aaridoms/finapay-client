@@ -15,6 +15,7 @@ import { LockIcon } from "./LockIcon.jsx";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
+import { isMobile } from "react-device-detect";
 
 export default function App() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -51,8 +52,8 @@ export default function App() {
   };
 
   return (
-    <>
-      <Button onPress={onOpen} color="primary">
+    <div>
+      <Button onPress={onOpen} color="primary" >
         Log In
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
@@ -109,6 +110,6 @@ export default function App() {
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 }

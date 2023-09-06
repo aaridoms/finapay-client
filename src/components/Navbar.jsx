@@ -8,33 +8,27 @@ import {
   Button,
 } from "@nextui-org/react";
 import logoImg from "../assets/finapayLogoSinFondo.png";
-import Login from "./Login"
-
+import Login from "./Login";
+import { isMobile } from "react-device-detect";
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
- 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
-        <NavbarBrand>
-          <Link href="/">
-            <img
-              src={logoImg}
-              alt="logo"
-              fill="none"
-              viewBox="0 0 32 32"
-              width="150"
-            />
-          </Link>
-        </NavbarBrand>
+    <Navbar>
+      <NavbarContent style={isMobile ? { display: "flex", justifyContent: "center" } : {} } >
+        <Link href="/">
+          <img
+            src={logoImg}
+            alt="logo"
+            fill="none"
+            viewBox="0 0 32 32"
+            width="150"
+            className="mx-auto"
+          />
+        </Link>
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex gap-4"
-        justify="center"
-      ></NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className={isMobile && "hidden"}>
         <NavbarItem className=" lg:flex">
           <Login />
         </NavbarItem>

@@ -3,29 +3,27 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
+  NavbarMenuToggle,
   Link,
   DropdownItem,
-  NavbarMenu,
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
   Avatar,
-  
+  NavbarMenuItem,
+  NavbarMenu,
 } from "@nextui-org/react";
-import { isMobile } from 'react-device-detect';
-import defaultPic from "../assets/defaultPic.webp";
-import logoImg from "../assets/finapayLogoSinFondo.png";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
+import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
+import logoImg from "../assets/finapayLogoSinFondo.png";
 
-export default function App() {
+export default function NavBarUserMovile() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [userProfile, setUserProfile] = useState();
-
-  const {  verifyToken } = useContext(AuthContext);
+  const { verifyToken } = useContext(AuthContext);
 
   useEffect(() => {
     getData();
@@ -54,35 +52,25 @@ export default function App() {
   }
 
   return (
-    <Navbar>
-      <NavbarBrand>
-        <Link href="/account/summary" color="dark-blue">
-          <img
-            src={logoImg}
-            alt="logo"
-            fill="none"
-            viewBox="0 0 32 32"
-            width="150"
-          />
-        </Link>
-      </NavbarBrand>
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
+      </NavbarContent>
 
-      <NavbarContent className="sm:flex gap-4" justify="left">
-        <NavbarItem>
-          <Link color="foreground" href="/account/expenses">
-            EXPENSES
+      <NavbarContent className=" sm:flex gap-4" justify="center">
+        <NavbarBrand>
+          <Link href="/account/summary" color="dark-blue">
+            <img
+              src={logoImg}
+              alt="logo"
+              fill="none"
+              viewBox="0 0 32 32"
+              width="150"
+            />
           </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/account/summary" aria-current="page" color="dark-blue">
-            HOME
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/account/investment">
-            INVESTMENT
-          </Link>
-        </NavbarItem>
+        </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
@@ -117,6 +105,35 @@ export default function App() {
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
+
+      <NavbarMenu>
+        <NavbarMenuItem>
+          <Link
+            className="w-full"
+            color="foreground"
+            href="/account/summary"
+            size="lg"
+          >
+            SUMMARY
+          </Link>
+          <Link
+            className="w-full"
+            color="foreground"
+            href="/account/expenses"
+            size="lg"
+          >
+            EXPENSES
+          </Link>
+          <Link
+            className="w-full"
+            color="foreground"
+            href="/account/investment"
+            size="lg"
+          >
+            INVESTMENT
+          </Link>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
 }

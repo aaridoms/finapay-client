@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import service from "../services/service.config";
 import "../App.css";
 import {
@@ -13,17 +14,32 @@ import {
   CardFooter,
   Divider,
   Avatar,
+  Pagination,
 } from "@nextui-org/react";
 import TransactionForm from "../components/TransactionForm";
 import AddFunds from "../components/AddFunds";
 import moment from "moment/moment";
 import ChartBar from "../components/ChartBar";
 import { isMobile } from "react-device-detect";
+
 export default function Summary() {
+
+  const itemsPerPage = 6;
+
   const [userData, setUserData] = useState();
-  const [transactionData, setTransactionData] = useState();
+  const [transactionData, setTransactionData] = useState([]);
   const [allUsers, setAllUsers] = useState();
   const [isLoadingAddFunds, setIsLoadingAddFunds] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dolars, setDolars] = useState(0);
+  const [pounds, setPounds] = useState(0);
+  const [isDolarActive, setIsDolarActive] = useState(false);
+  const [isPoundActive, setIsPoundActive] = useState(false);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = transactionData.slice(indexOfFirstItem, indexOfLastItem);
+
   useEffect(() => {
     getData();
   }, []);
@@ -39,6 +55,18 @@ export default function Summary() {
       console.log(error);
     }
   };
+
+  const handleEuroToDolars = async () => {
+    try {
+      const response = await axios.get("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/usd.json");
+      console.log(response.data.usd * userData.funds)
+      setDolars(response.data.usd * userData.funds);
+      setIsDolarActive(true)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   if (userData === undefined || transactionData === undefined) {
     return <CircularProgress label="Loading..." />;
   }
@@ -71,17 +99,16 @@ export default function Summary() {
               )}
             </CardBody>
             <CardFooter className="flex flex-col flex-wrap  text-left gap-4">
-              <div className="flex justify-between gap-4">
-                <Button size="sm">To Dolars</Button>
+              <div className="flex justify-between gap-4 items-center">
+              {isDolarActive ? <Button size="sm" onClick={ () =>{setIsDolarActive(false)} }> €</Button> : <Button size="sm" onClick={ handleEuroToDolars }>$</Button>}
                 <Chip
                   color="success"
                   variant="shadow"
                   className="text-3xl font-bold"
                   style={{ fontSize: "24px", padding: "20px", display: "flex" }}
                 >
-                  {userData.funds.toFixed(2)} €
+                  {isDolarActive ?<>${dolars.toFixed(2)}</>  : <>{userData.funds.toFixed(2)}€</>}
                 </Chip>
-                <Button size="sm">To Pounds</Button>
               </div>
             </CardFooter>
           </Card>
@@ -101,8 +128,9 @@ export default function Summary() {
                 <AddFunds
                   getData={getData}
                   setIsLoadingAddFunds={setIsLoadingAddFunds}
+                  setIsDolarActive={setIsDolarActive}
                 />
-                <TransactionForm getData={getData} allUsers={allUsers} />
+                <TransactionForm getData={getData} allUsers={allUsers} userData={userData} />
               </div>
             </CardFooter>
           </Card>
@@ -111,11 +139,12 @@ export default function Summary() {
               <Divider/>
       <div className="flex flex-row flex-wrap">
         <div>
+          <Pagination total={Math.ceil(transactionData.length / itemsPerPage)} initialPage={1} onChange={setCurrentPage} className="mt-2"/>
           <Card style={{ marginTop: "20px", width:isMobile ? "370px" : "470px" }}>
-            {transactionData.map((transaction, i) => {
-              if (i >= 6) {
-                return;
-              }
+            {currentItems.map((transaction, i) => {
+              // if (i >= 6) {
+              //   return;
+              // }
               
               let userNameTo =  transaction.to.username
               let userNameFrom = transaction.from.username
@@ -169,7 +198,7 @@ export default function Summary() {
           </Card>
         </div>
         
-        <div style={{margin: " 60px 30px", width: isMobile ? "370px" : "600px" }}>
+        <div style={{margin: " 60px 30px", width: isMobile ? "370px" : "600px"}}>
           <ChartBar transactionData={transactionData} userData={userData} />
         </div>
       </div>

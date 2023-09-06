@@ -36,7 +36,11 @@ export default function AddFunds(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if(funds <= 0) return setErrorMessage("Funds must be greater than 0");
+
     props.setIsLoadingAddFunds(true);
+    props.setIsDolarActive(false);
     setIsPopoverOpen(false);
     const intervalId = setInterval(() => {
       handleFundsForm();

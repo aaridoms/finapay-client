@@ -4,7 +4,7 @@ import Charts from "chart.js/auto";
 
 export default function ChartBar(props) {
   let expensesByDate = props.userData.expenses.reduce((acc, expense) => {
-    let date = moment(expense.date).format("DD/MM/YYYY");
+    let date = moment(expense.date).format("DD/MM");
     if (!acc[date]) {
       acc[date] = 0;
     }
@@ -13,7 +13,7 @@ export default function ChartBar(props) {
   }, {});
   
   let transactionsByDatePos = props.transactionData.reduce((acc, transaction) => {
-    let date = moment(transaction.date).format("DD/MM/YYYY");
+    let date = moment(transaction.date).format("DD/MM");
     if (!acc[date]) {
       acc[date] = 0;
     }
@@ -27,7 +27,7 @@ export default function ChartBar(props) {
   }, {});
 
   let transactionsByDateNeg = props.transactionData.reduce((acc, transaction) => {
-    let date = moment(transaction.date).format("DD/MM/YYYY");
+    let date = moment(transaction.date).format("DD/MM");
     if (!acc[date]) {
       acc[date] = 0;
     }

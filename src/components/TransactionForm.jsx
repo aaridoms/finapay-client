@@ -35,6 +35,8 @@ export default function TransactionForm(props) {
 
   const handleTransaction = async (e) => {
     e.preventDefault();
+
+    if(props.userData.funds < amount) return setErrorMessage("You don't have enough funds");
     
     try {
       await service.post("/account/send", {
@@ -42,6 +44,7 @@ export default function TransactionForm(props) {
         amount,
         concept,
       });
+      
       props.getData();
     } catch (error) {
       if (error.response && error.response.status === 400) {

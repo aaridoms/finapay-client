@@ -16,15 +16,13 @@ export default function AddFunds(props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleFundsForm = async (e) => {
-    e.preventDefault();
+  const handleFundsForm = async () => {
     try {
       // console.log(funds)
       await service.post("/account/add-funds", {
         funds,
       });
       props.getData();
-      setIsPopoverOpen(false);
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
@@ -34,6 +32,17 @@ export default function AddFunds(props) {
         navigate("/error");
       }
     }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    props.setIsLoadingAddFunds(true);
+    setIsPopoverOpen(false);
+    const intervalId = setInterval(() => {
+      handleFundsForm();
+      props.setIsLoadingAddFunds(false);
+      clearInterval(intervalId);
+    }, 3000);
   };
 
   const handlePopoverOpen = () => {
@@ -64,7 +73,10 @@ export default function AddFunds(props) {
             <p className="text-small font-bold text-foreground" {...titleProps}>
               Add Funds
             </p>
-            <form className="mt-2 flex flex-col gap-2 w-full">
+            <form
+              className="mt-2 flex flex-col gap-2 w-full"
+              onSubmit={handleFormSubmit}
+            >
               <Input
                 // defaultValue="Add Funds"
                 type="number"
@@ -76,11 +88,7 @@ export default function AddFunds(props) {
                   setFunds(e.target.value);
                 }}
               />
-              <Button
-                
-                type="submit"
-                onClick={handleFundsForm}
-              >+</Button>
+              <Button type="submit">+</Button>
               {errorMessage ? (
                 <p className="flex justify-center" style={{ color: "red" }}>
                   {" "}

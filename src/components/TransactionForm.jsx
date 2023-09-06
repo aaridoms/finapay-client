@@ -35,7 +35,7 @@ export default function TransactionForm(props) {
 
   const handleTransaction = async (e) => {
     e.preventDefault();
-
+    
     try {
       await service.post("/account/send", {
         to,
@@ -58,7 +58,7 @@ export default function TransactionForm(props) {
       <Button onPress={onOpen} color="success">
         Send Money
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
             <>

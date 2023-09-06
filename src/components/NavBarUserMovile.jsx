@@ -107,12 +107,13 @@ export default function NavBarUserMovile() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem>
+        <NavbarMenuItem className="flex flex-col content-center gap-4 " >
           <Link
-            className="w-full"
-            color="foreground"
+            
+            color="primary"
             href="/account/summary"
             size="lg"
+            underline="hover"
           >
             SUMMARY
           </Link>
@@ -121,6 +122,7 @@ export default function NavBarUserMovile() {
             color="foreground"
             href="/account/expenses"
             size="lg"
+            underline="hover"
           >
             EXPENSES
           </Link>
@@ -129,6 +131,7 @@ export default function NavBarUserMovile() {
             color="foreground"
             href="/account/investment"
             size="lg"
+            underline="hover"
           >
             INVESTMENT
           </Link>

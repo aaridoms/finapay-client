@@ -47,3 +47,18 @@
       padding: 40px 0 20px;
   }
 }
+
+.flex-container {
+    /* align flex into a column */
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-row {
+    /* align elements into a row and distribute space evenly */
+    display: flex;
+    justify-content: space-around;
+  }.equal-width {
+    /* set elements to take equal width */
+    flex: 1 1 0px;
+    margin: 5px;
+  }

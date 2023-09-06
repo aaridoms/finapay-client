@@ -32,7 +32,7 @@ export default function Signup() {
         password,
         repitPassword,
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);

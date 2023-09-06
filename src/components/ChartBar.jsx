@@ -81,8 +81,8 @@ export default function ChartBar(props) {
   };
 
   return (
-    <div>
+    
       <Chart type="bar" data={data} options={options} />
-    </div>
+  
   );
 }

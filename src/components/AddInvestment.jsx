@@ -78,10 +78,10 @@ export default function AddInvestment(props) {
                 }}
               />
               <Button
-                className="hidden"
+                
                 type="submit"
                 onClick={handleJoinForm}
-              />
+              >+</Button>
               {errorMessage ? (
                 <p className="flex justify-center" style={{ color: "red" }}>
                   {" "}

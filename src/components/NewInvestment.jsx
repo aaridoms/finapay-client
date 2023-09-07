@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 export default function NewInvestment(props) {
   const navigate = useNavigate();
@@ -52,8 +53,12 @@ export default function NewInvestment(props) {
         notes,
       });
       props.getData();
-    } catch (error) {
+    } catch (error) {if (error.response && error.response.status === 400) {
+      setErrorMessage(error.response.data.errorMessage);
+    } else {
+      console.log(error);
       navigate("/error");
+    }
     }
   };
   return (
@@ -61,7 +66,7 @@ export default function NewInvestment(props) {
       <Button onPress={onOpen} color={props.isEdit ? "warning" : "primary"}>
         Add Investment
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center" >
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"} >
         <ModalContent>
           {(onClose) => (
             <>
@@ -160,7 +165,7 @@ export default function NewInvestment(props) {
                   Create
                 </Button>
               </ModalFooter>
-              {errorMessage ? <p> {errorMessage}</p> : null}
+              {errorMessage ? <p style={{display:"flex",justifyContent:"center",color:"red", marginBottom:"5px"}}> {errorMessage}</p> : null}
             </>
           )}
         </ModalContent>

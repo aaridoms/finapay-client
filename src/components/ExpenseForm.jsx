@@ -14,9 +14,11 @@ import {
   SelectItem,
   Avatar,
 } from "@nextui-org/react";
+
 import { useState } from "react";
 import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 export default function ExpenseForm(props) {
   const navigate = useNavigate();
@@ -77,10 +79,10 @@ export default function ExpenseForm(props) {
 
   return (
     <div>
-      <Button variant="shadow" onPress={onOpen} color={props.isEdit ? "warning" : "success"} size={props.isEdit && "sm"}>
+      <Button variant="shadow" onPress={onOpen} color={props.isEdit ? "primary" : "success"} size={props.isEdit && "sm"}>
         {props.isEdit ? "Edit expense" : "New expense"}
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>
         <ModalContent>
           {(onClose) => (
             <>

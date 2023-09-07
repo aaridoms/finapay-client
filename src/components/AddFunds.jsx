@@ -92,7 +92,7 @@ export default function AddFunds(props) {
                   setFunds(e.target.value);
                 }}
               />
-              <Button type="submit">+</Button>
+              <Button style={{backgroundColor: "#67cdf5"}} type="submit">+</Button>
               {errorMessage ? (
                 <p className="flex justify-center" style={{ color: "red" }}>
                   {" "}

@@ -56,7 +56,7 @@ export default function App() {
       <Button onPress={onOpen} color="primary" >
         Log In
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -102,7 +102,7 @@ export default function App() {
                   Close
                 </Button>
                 <Button color="primary" onClick={handleLogin} onPress={onClose}>
-                  Sign in
+                  Login
                 </Button>
                 {errorMessage ? <p> {errorMessage}</p> : null}
               </ModalFooter>

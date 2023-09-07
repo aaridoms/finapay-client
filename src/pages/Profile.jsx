@@ -22,7 +22,6 @@ export default function Profile() {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
@@ -134,17 +133,25 @@ export default function Profile() {
               <Spinner
                 className="flex justify-center"
                 color="primary"
-                style={{marginTop:"10px"}}
+                style={{ marginTop: "10px" }}
               />
             ) : (
-              <h4 className="flex justify-center" style={{ marginTop: "10px" }}>
+              <h4
+                className="flex justify-center text-small text-default-500"
+                style={{ marginTop: "10px", textAlign: "initial" }}
+              >
                 Click to change your Image Profile
               </h4>
             )}
           </div>
 
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              paddingLeft: "10px",
+            }}
           >
             <h1>Perfil de {userProfile.username} </h1>
             <h3>Email: {userProfile.email}</h3>
@@ -156,7 +163,11 @@ export default function Profile() {
               onClose={handlePopoverClose}
             >
               <PopoverTrigger>
-                <Button color="primary" onClick={handlePopoverOpen}>
+                <Button
+                  color="primary"
+                  onClick={handlePopoverOpen}
+                  variant="shadow"
+                >
                   Change your Email
                 </Button>
               </PopoverTrigger>
@@ -179,6 +190,7 @@ export default function Profile() {
                         color="primary"
                         type="submit"
                         onClick={handleEmailForm}
+                        variant="shadow"
                       >
                         {" "}
                         +

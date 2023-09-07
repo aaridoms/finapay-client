@@ -102,6 +102,7 @@ export default function App() {
               size="sm"
               src={userProfile.profilePic || defaultPic}
             />
+            
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2" textValue="hola">
@@ -109,7 +110,7 @@ export default function App() {
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
-              <p className="font-semibold" style={{color: "green"}}>{userProfile.funds.toFixed(2)} €</p>
+              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userProfile.funds.toFixed(2)} €</p>
             </DropdownItem>
             <DropdownItem
               key="settings"
@@ -117,7 +118,7 @@ export default function App() {
                 navigate("/account/profile");
               }}
             >
-              <p style={{color:"#c3b169"}}>My Settings</p>
+              <p >My Settings</p>
             </DropdownItem>
             <DropdownItem onClick={handleLogout} key="logout" color="danger">
               <p style={{color: "red"}}>Logout</p>

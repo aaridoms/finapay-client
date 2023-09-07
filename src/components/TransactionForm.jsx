@@ -17,6 +17,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 export default function TransactionForm(props) {
   const navigate = useNavigate();
@@ -34,20 +35,17 @@ export default function TransactionForm(props) {
   const handleConceptChange = (e) => setConcept(e.target.value);
 
   const handleTransaction = async (e) => {
-    e.preventDefault();
-
-    if(props.userData.funds < amount) return setErrorMessage("You don't have enough funds");
-    
     try {
       await service.post("/account/send", {
         to,
         amount,
         concept,
       });
-      
       props.getData();
+      props.setIsLoadingTransaction(false);
     } catch (error) {
       if (error.response && error.response.status === 400) {
+        props.setIsLoadingTransaction(false)
         setErrorMessage(error.response.data.errorMessage);
       } else {
         console.log(error);
@@ -56,12 +54,27 @@ export default function TransactionForm(props) {
     }
   };
 
+  const handleModal = (e) => {
+    e.preventDefault();
+    if (props.userData.funds < amount) {
+      props.setIsLoadingTransaction(false)
+      return setErrorMessage("You don't have enough funds")
+    }
+      props.setIsLoadingTransaction(true)
+      const intervalId = setInterval(() => {
+        handleTransaction();
+        
+        clearInterval(intervalId);
+      }, 3000);
+  };
+
+
   return (
     <>
-      <Button onPress={onOpen} color="success">
+      <Button onPress={onOpen} color="success" variant="shadow">
         Send Money
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -153,19 +166,27 @@ export default function TransactionForm(props) {
                   onChange={handleConceptChange}
                 />
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="flex justify-center">
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Close
                 </Button>
                 <Button
                   color="primary"
                   onPress={onClose}
-                  onClick={handleTransaction}
+                  onClick={handleModal}
                 >
                   Send
                 </Button>
               </ModalFooter>
-              {errorMessage ? <p> {errorMessage}</p> : null}
+              {errorMessage ? (
+                <p
+                  style={{ color: "red", paddingBottom: "10px" }}
+                  className="flex justify-center"
+                >
+                  {" "}
+                  {errorMessage}
+                </p>
+              ) : null}
             </>
           )}
         </ModalContent>

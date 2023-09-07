@@ -130,7 +130,7 @@ export default function Signup() {
             Signup
           </Button>
         </div>
-        {errorMessage ? <p className="text-center"> {errorMessage}</p> : null}
+        {errorMessage ? <p className="text-center" style={{color:"red"}}> {errorMessage}</p> : null}
       </div>
     </div>
   );

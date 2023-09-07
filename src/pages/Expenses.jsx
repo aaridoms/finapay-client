@@ -16,6 +16,7 @@ import {
 import ExChart from "../components/ExChart";
 
 import ExpenseForm from "../components/ExpenseForm";
+import { isMobile } from "react-device-detect";
 export default function Expenses() {
   const navigate = useNavigate();
 
@@ -81,21 +82,21 @@ export default function Expenses() {
               <Card key={i} className="w-full max-w-1/2 mx-auto mb-2">
                 <CardHeader className="flex justify-between items-center px-4">
                   <div className="flex gap-3">
-                    <h3>
-                      <b>Name: </b> {eachExpense.name}
-                    </h3>
-                    <h3>
-                      <b>Amount: </b>
+                    <p className={isMobile &&"text-small text-default-500"}>
+                      <b >Name: </b> {eachExpense.name}
+                    </p>
+                    <p className={isMobile &&"text-small text-default-500"}>
+                      <b >Amount: </b>
                       {eachExpense.amount}€
-                    </h3>
-                    <h3>
+                    </p>
+                    <p className={isMobile &&"text-small text-default-500"}>
                       <b>Category: </b>
                       {eachExpense.category}
-                    </h3>
+                    </p>
                   </div>
                   <div className="flex gap-3">
                     <Button
-                      href={`/account/expenses/${eachExpense._id}/details`}
+                     onClick={() => navigate(`/account/expenses/${eachExpense._id}/details`)} 
                       as={Link}
                       // color="primary"
                       variant="shadow"

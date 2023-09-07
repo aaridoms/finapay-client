@@ -12,6 +12,7 @@ import {
   Progress,
   CardFooter,
   Divider,
+  Image,
   Avatar,
   Pagination,
 } from "@nextui-org/react";
@@ -20,6 +21,7 @@ import AddFunds from "../components/AddFunds";
 import moment from "moment/moment";
 import ChartBar from "../components/ChartBar";
 import { isMobile } from "react-device-detect";
+import summaryImg from "../assets/Summary.png"
 
 export default function Summary() {
   const itemsPerPage = 6;
@@ -28,6 +30,7 @@ export default function Summary() {
   const [transactionData, setTransactionData] = useState([]);
   const [allUsers, setAllUsers] = useState();
   const [isLoadingAddFunds, setIsLoadingAddFunds] = useState(false);
+  const [isLoadingTransaction, setIsLoadingTransaction] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [dolars, setDolars] = useState(0);
   const [isDolarActive, setIsDolarActive] = useState(false);
@@ -71,7 +74,7 @@ export default function Summary() {
   }
 
   return (
-    <div className="flex flex-col mx-auto container">
+    <div className="flex flex-col mx-auto container" style={{marginTop:"30px"}}>
       <div className="flex justify-between flex-wrap">
         <div>
           <Card
@@ -108,12 +111,13 @@ export default function Summary() {
                     onClick={() => {
                       setIsDolarActive(false);
                     }}
+                    variant="shadow"
                   >
                     {" "}
                     to €
                   </Button>
                 ) : (
-                  <Button color="primary" size="sm" onClick={handleEuroToDolars}>
+                  <Button color="primary" size="sm" onClick={handleEuroToDolars} variant="shadow">
                     to $
                   </Button>
                 )}
@@ -133,6 +137,7 @@ export default function Summary() {
             </CardFooter>
           </Card>
         </div>
+        <Image isZoomed isBlurred src={summaryImg} alt="" width={"370px"} />
         <div>
           <Card style={{ marginTop: "15px", height: "200px", width: "370px" }}>
             <CardBody style={{ fontSize: "30px", padding: "10px" }}>
@@ -154,6 +159,7 @@ export default function Summary() {
                   getData={getData}
                   allUsers={allUsers}
                   userData={userData}
+                  setIsLoadingTransaction={setIsLoadingTransaction}
                 />
               </div>
             </CardFooter>
@@ -168,10 +174,19 @@ export default function Summary() {
             initialPage={1}
             onChange={setCurrentPage}
             className="mt-2"
+            showShadow 
           />
           <Card
-            style={{ marginTop: "20px", width: isMobile ? "370px" : "470px" }}
+            style={{display:"flex",justifyContent:"center", marginTop: "20px", width: isMobile ? "370px" : "470px" }}
           >
+            {isLoadingTransaction === true && (
+                <Progress
+                  size="sm"
+                  isIndeterminate
+                  aria-label="Loading..."
+                  className="max-w-md"
+                />
+              )}
             {currentItems.map((transaction, i) => {
               // if (i >= 6) {
               //   return;
@@ -230,7 +245,7 @@ export default function Summary() {
                           <b>- {transaction.amount}€</b>
                         </p>
                       ) : (
-                        <p style={{ color: "green" }} >
+                        <p style={{ color: "#18C964" }} >
                           <b>+ {transaction.amount}€</b>
                         </p>
                       )}

@@ -12,11 +12,13 @@ import {
   Avatar,
   NavbarMenuItem,
   NavbarMenu,
+  Divider,
 } from "@nextui-org/react";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logoImg from "../assets/finapayLogoSinFondo.png";
+import Footer from "./Footer"
 
 export default function NavBarUserMovile() {
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ export default function NavBarUserMovile() {
 
       <NavbarContent className=" sm:flex gap-4" justify="center">
         <NavbarBrand>
-          <Link href="/account/summary" color="dark-blue">
+          <NavLink to={"/account/summary"} color="dark-blue">
             <img
               src={logoImg}
               alt="logo"
@@ -69,7 +71,7 @@ export default function NavBarUserMovile() {
               viewBox="0 0 32 32"
               width="150"
             />
-          </Link>
+          </NavLink>
         </NavbarBrand>
       </NavbarContent>
 
@@ -94,6 +96,7 @@ export default function NavBarUserMovile() {
             <DropdownItem
               key="settings"
               onClick={() => {
+                setIsMenuOpen(false);
                 navigate("/account/profile");
               }}
             >
@@ -107,34 +110,52 @@ export default function NavBarUserMovile() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem className="flex flex-col content-center gap-4 " >
-          <Link
-            
-            color="primary"
-            href="/account/summary"
-            size="lg"
-            underline="hover"
-          >
-            SUMMARY
-          </Link>
-          <Link
-            className="w-full"
-            color="foreground"
-            href="/account/expenses"
-            size="lg"
-            underline="hover"
-          >
-            EXPENSES
-          </Link>
-          <Link
-            className="w-full"
-            color="foreground"
-            href="/account/investment"
-            size="lg"
-            underline="hover"
-          >
-            INVESTMENT
-          </Link>
+        <NavbarMenuItem className="flex flex-col content-between	 gap-4 ">
+          <div className="flex flex-col content-center gap-4 " style={{marginTop:"30px"}}>
+            <NavLink
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/summary");
+              }}
+            >
+              SUMMARY
+            </NavLink>
+            <NavLink
+              className="w-full"
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/expenses");
+              }}
+            >
+              EXPENSES
+            </NavLink>
+            <NavLink
+              className="w-full"
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/investment");
+              }}
+            >
+              INVESTMENT
+            </NavLink>
+          </div>
+          <div style={{marginTop:"350px"}}>
+            <Divider/>
+          <Footer/>
+
+          </div>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

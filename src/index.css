@@ -23,3 +23,9 @@
       margin-right: 10px; /* Ajusta el margen según tus preferencias */
     }
   }
+
+  .prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }

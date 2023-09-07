@@ -56,7 +56,7 @@ export default function App() {
       <Button onPress={onOpen} color="primary" >
         Log In
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"} style={{ backgroundColor: "#18181b", color: "#fff" }} backdrop="opaque">
         <ModalContent>
           {(onClose) => (
             <>
@@ -93,7 +93,7 @@ export default function App() {
                       label: "text-small",
                     }}
                   >
-                    Remember me
+                    <p style={{color: "#fff"}}>Remember me</p>
                   </Checkbox>
                 </div>
               </ModalBody>

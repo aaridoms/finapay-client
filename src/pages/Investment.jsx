@@ -8,6 +8,7 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Spinner,
   Pagination,
   Image,
 } from "@nextui-org/react";
@@ -54,7 +55,7 @@ export default function Investment() {
   };
 
   if (allInvestment === undefined || userOperations === undefined) {
-    return <h3>Cargando Datos....</h3>;
+    return <Spinner color="primary" style={{paddingTop:"20px"}}/>;
   }
 
   return (

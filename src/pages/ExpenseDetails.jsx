@@ -11,6 +11,7 @@ import {
   Divider,
   Link,
   Button,
+  Spinner,
   Chip,
 } from "@nextui-org/react";
 import { isMobile } from "react-device-detect";
@@ -49,7 +50,7 @@ export default function ExpenseDetails() {
   };
 
   if (oneExpense === undefined) {
-    return <div>Cargando...</div>;
+    return <Spinner color="primary" style={{paddingTop:"20px"}} />;
   }
 
   return (

@@ -13,6 +13,7 @@ import {
   CardFooter,
   Divider,
   Image,
+  Spinner,
   Avatar,
   Pagination,
 } from "@nextui-org/react";
@@ -70,7 +71,7 @@ export default function Summary() {
   };
 
   if (userData === undefined || transactionData === undefined) {
-    return <CircularProgress label="Loading..." />;
+    return <Spinner color="primary" style={{paddingTop:"20px"}} />;
   }
 
   return (

@@ -62,7 +62,7 @@ export default function Expenses() {
   };
 
   if (userExpenses === undefined) {
-    return <Spinner color="primary" style={{paddingTop:"10px"}} />;
+    return <Spinner color="primary" style={{paddingTop:"20px"}} />;
   }
 
   return (

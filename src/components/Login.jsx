@@ -102,7 +102,7 @@ export default function App() {
                   Close
                 </Button>
                 <Button color="primary" onClick={handleLogin} onPress={onClose}>
-                  Sign in
+                  Login
                 </Button>
                 {errorMessage ? <p> {errorMessage}</p> : null}
               </ModalFooter>

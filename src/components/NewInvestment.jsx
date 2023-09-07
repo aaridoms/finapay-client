@@ -53,8 +53,12 @@ export default function NewInvestment(props) {
         notes,
       });
       props.getData();
-    } catch (error) {
+    } catch (error) {if (error.response && error.response.status === 400) {
+      setErrorMessage(error.response.data.errorMessage);
+    } else {
+      console.log(error);
       navigate("/error");
+    }
     }
   };
   return (
@@ -161,7 +165,7 @@ export default function NewInvestment(props) {
                   Create
                 </Button>
               </ModalFooter>
-              {errorMessage ? <p> {errorMessage}</p> : null}
+              {errorMessage ? <p style={{display:"flex",justifyContent:"center",color:"red", marginBottom:"5px"}}> {errorMessage}</p> : null}
             </>
           )}
         </ModalContent>

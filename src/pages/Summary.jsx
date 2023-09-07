@@ -12,6 +12,7 @@ import {
   Progress,
   CardFooter,
   Divider,
+  Image,
   Avatar,
   Pagination,
 } from "@nextui-org/react";
@@ -20,6 +21,7 @@ import AddFunds from "../components/AddFunds";
 import moment from "moment/moment";
 import ChartBar from "../components/ChartBar";
 import { isMobile } from "react-device-detect";
+import summaryImg from "../assets/Summary.png"
 
 export default function Summary() {
   const itemsPerPage = 6;
@@ -72,7 +74,7 @@ export default function Summary() {
   }
 
   return (
-    <div className="flex flex-col mx-auto container">
+    <div className="flex flex-col mx-auto container" style={{marginTop:"30px"}}>
       <div className="flex justify-between flex-wrap">
         <div>
           <Card
@@ -135,6 +137,7 @@ export default function Summary() {
             </CardFooter>
           </Card>
         </div>
+        <Image isZoomed isBlurred src={summaryImg} alt="" width={"370px"} />
         <div>
           <Card style={{ marginTop: "15px", height: "200px", width: "370px" }}>
             <CardBody style={{ fontSize: "30px", padding: "10px" }}>

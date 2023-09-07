@@ -12,11 +12,13 @@ import {
   Avatar,
   NavbarMenuItem,
   NavbarMenu,
+  Divider,
 } from "@nextui-org/react";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { NavLink, useNavigate } from "react-router-dom";
 import logoImg from "../assets/finapayLogoSinFondo.png";
+import Footer from "./Footer"
 
 export default function NavBarUserMovile() {
   const navigate = useNavigate();
@@ -94,7 +96,7 @@ export default function NavBarUserMovile() {
             <DropdownItem
               key="settings"
               onClick={() => {
-                setIsMenuOpen(false)
+                setIsMenuOpen(false);
                 navigate("/account/profile");
               }}
             >
@@ -108,45 +110,52 @@ export default function NavBarUserMovile() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem className="flex flex-col content-center gap-4 ">
-          <NavLink
-            color="primary"
-            size="lg"
-            underline="hover"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsMenuOpen(false);
-              navigate("/account/summary")
-            }}
-          >
-            SUMMARY
-          </NavLink>
-          <NavLink
-            className="w-full"
-            color="foreground"
-            size="lg"
-            underline="hover"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsMenuOpen(false);
-              navigate("/account/expenses");
-            }}
-          >
-            EXPENSES
-          </NavLink>
-          <NavLink
-            className="w-full"
-            color="foreground"
-            size="lg"
-            underline="hover"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsMenuOpen(false);
-              navigate("/account/investment");
-            }}
-          >
-            INVESTMENT
-          </NavLink>
+        <NavbarMenuItem className="flex flex-col content-between	 gap-4 ">
+          <div className="flex flex-col content-center gap-4 " style={{marginTop:"30px"}}>
+            <NavLink
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/summary");
+              }}
+            >
+              SUMMARY
+            </NavLink>
+            <NavLink
+              className="w-full"
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/expenses");
+              }}
+            >
+              EXPENSES
+            </NavLink>
+            <NavLink
+              className="w-full"
+              style={{color:"#0070F0", fontSize:"bold"}}
+              size="lg"
+              underline="hover"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                navigate("/account/investment");
+              }}
+            >
+              INVESTMENT
+            </NavLink>
+          </div>
+          <div style={{marginTop:"350px"}}>
+            <Divider/>
+          <Footer/>
+
+          </div>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

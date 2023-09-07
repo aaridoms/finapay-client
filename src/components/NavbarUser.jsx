@@ -103,16 +103,19 @@ export default function App() {
               <p className="font-semibold">Signed in as </p>
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
+            <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
+              <p className="font-semibold" style={{color: "green"}}>{userProfile.funds} €</p>
+            </DropdownItem>
             <DropdownItem
               key="settings"
               onClick={() => {
                 navigate("/account/profile");
               }}
             >
-              My Settings
+              <p style={{color:"#c3b169"}}>My Settings</p>
             </DropdownItem>
             <DropdownItem onClick={handleLogout} key="logout" color="danger">
-              Logout
+              <p style={{color: "red"}}>Logout</p>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

@@ -20,7 +20,7 @@ export default function Home() {
       </Button>
       <Login />
       <footer>
-        <p className="footer-text">Derechos de autor &copy; 2023 Tu Compañía</p>
+       
       </footer>
     </div>
   );

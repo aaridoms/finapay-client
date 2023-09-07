@@ -79,7 +79,7 @@ export default function ExpenseForm(props) {
 
   return (
     <div>
-      <Button onPress={onOpen} color={props.isEdit ? "warning" : "success"} size={props.isEdit && "sm"}>
+      <Button variant="shadow" onPress={onOpen} color={props.isEdit ? "warning" : "success"} size={props.isEdit && "sm"}>
         {props.isEdit ? "Edit expense" : "New expense"}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>

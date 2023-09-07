@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 export default function NewInvestment(props) {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export default function NewInvestment(props) {
       <Button onPress={onOpen} color={props.isEdit ? "warning" : "primary"}>
         Add Investment
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center" >
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"} >
         <ModalContent>
           {(onClose) => (
             <>

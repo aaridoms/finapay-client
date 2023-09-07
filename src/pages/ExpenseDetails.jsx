@@ -14,6 +14,8 @@ import {
   Button,
   Chip,
 } from "@nextui-org/react";
+import { isMobile } from "react-device-detect";
+
 
 export default function ExpenseDetails() {
   const isEdit = true;

@@ -78,7 +78,7 @@ export default function AddInvestment(props) {
                 }}
               />
               <Button
-                
+                style={{ backgroundColor: "#67cdf5" }}
                 type="submit"
                 onClick={handleJoinForm}
               >+</Button>

@@ -15,7 +15,7 @@ import {
 } from "@nextui-org/react";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logoImg from "../assets/finapayLogoSinFondo.png";
 
 export default function NavBarUserMovile() {
@@ -61,7 +61,7 @@ export default function NavBarUserMovile() {
 
       <NavbarContent className=" sm:flex gap-4" justify="center">
         <NavbarBrand>
-          <Link href="/account/summary" color="dark-blue">
+          <NavLink to={"/account/summary"} color="dark-blue">
             <img
               src={logoImg}
               alt="logo"
@@ -69,7 +69,7 @@ export default function NavBarUserMovile() {
               viewBox="0 0 32 32"
               width="150"
             />
-          </Link>
+          </NavLink>
         </NavbarBrand>
       </NavbarContent>
 
@@ -94,6 +94,7 @@ export default function NavBarUserMovile() {
             <DropdownItem
               key="settings"
               onClick={() => {
+                setIsMenuOpen(false)
                 navigate("/account/profile");
               }}
             >
@@ -107,34 +108,45 @@ export default function NavBarUserMovile() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem className="flex flex-col content-center gap-4 " >
-          <Link
-            
+        <NavbarMenuItem className="flex flex-col content-center gap-4 ">
+          <NavLink
             color="primary"
-            href="/account/summary"
             size="lg"
             underline="hover"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMenuOpen(false);
+              navigate("/account/summary")
+            }}
           >
             SUMMARY
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="w-full"
             color="foreground"
-            href="/account/expenses"
             size="lg"
             underline="hover"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMenuOpen(false);
+              navigate("/account/expenses");
+            }}
           >
             EXPENSES
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="w-full"
             color="foreground"
-            href="/account/investment"
             size="lg"
             underline="hover"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMenuOpen(false);
+              navigate("/account/investment");
+            }}
           >
             INVESTMENT
-          </Link>
+          </NavLink>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

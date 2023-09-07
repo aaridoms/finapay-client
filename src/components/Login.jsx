@@ -56,7 +56,7 @@ export default function App() {
       <Button onPress={onOpen} color="primary" >
         Log In
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={isMobile?"top-center":"center"}>
         <ModalContent>
           {(onClose) => (
             <>

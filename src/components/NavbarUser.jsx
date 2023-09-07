@@ -109,7 +109,7 @@ export default function App() {
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
-              <p className="font-semibold" style={{color: "green"}}>{userProfile.funds} €</p>
+              <p className="font-semibold" style={{color: "green"}}>{userProfile.funds.toFixed(2)} €</p>
             </DropdownItem>
             <DropdownItem
               key="settings"

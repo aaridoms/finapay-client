@@ -91,6 +91,9 @@ export default function TransactionForm(props) {
                               <span className="text-tiny text-default-400">
                                 {user.email}
                               </span>
+                              <span className="text-tiny text-default-400">
+                                {user.username}
+                              </span>
                             </div>
                           </div>
                         </SelectItem>

@@ -59,3 +59,30 @@
     flex: 1 1 0px;
     margin: 5px;
   }
+
+  .navLinkHome {
+    color: #bda857;
+    text-decoration: overline;
+    font-weight: bold;
+    
+  }
+  .navLink a {
+    color: #85d7f7;
+    
+  }
+  .navLink :hover{
+    color: #bda857;
+  }
+
+  .navLinkHome :hover {
+    text-decoration: overline;
+    font-weight: bold;
+    color: #85d7f7;
+    ;
+  }
+
+  .nav-active {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  

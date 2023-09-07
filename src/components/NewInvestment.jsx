@@ -58,10 +58,10 @@ export default function NewInvestment(props) {
   };
   return (
     <div>
-      <Button onPress={onOpen} color={props.isEdit ? "warning" : "success"}>
+      <Button onPress={onOpen} color={props.isEdit ? "warning" : "primary"}>
         Add Investment
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center" >
         <ModalContent>
           {(onClose) => (
             <>

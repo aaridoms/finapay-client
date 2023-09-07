@@ -10,13 +10,19 @@ import {
 import logoImg from "../assets/finapayLogoSinFondo.png";
 import Login from "./Login";
 import { isMobile } from "react-device-detect";
+import { NavLink, useNavigate } from "react-router-dom";
+
+
+
 export default function App() {
+
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Navbar>
       <NavbarContent style={isMobile ? { display: "flex", justifyContent: "center" } : {} } >
-        <Link href="/">
+        <NavLink to={"/"}>
           <img
             src={logoImg}
             alt="logo"
@@ -25,7 +31,7 @@ export default function App() {
             width="150"
             className="mx-auto"
           />
-        </Link>
+        </NavLink>
       </NavbarContent>
 
       <NavbarContent justify="end" className={isMobile && "hidden"}>
@@ -33,9 +39,14 @@ export default function App() {
           <Login />
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/signup" variant="flat">
-            Sign Up
-          </Button>
+        <NavLink>
+
+          
+        </NavLink>
+          <Button as={Link} color="primary" variant="flat" onClick={() => navigate('/signup')}>
+    Sign Up
+</Button>
+            
         </NavbarItem>
       </NavbarContent>
     </Navbar>

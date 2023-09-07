@@ -19,8 +19,8 @@ import ExpenseForm from "../components/ExpenseForm";
 export default function Expenses() {
   const navigate = useNavigate();
 
-  const [ userExpenses, setUserExpenses ] = useState();
-  const [ categoryFilter, setCategoryFilter ] = useState();
+  const [userExpenses, setUserExpenses] = useState();
+  const [categoryFilter, setCategoryFilter] = useState();
 
   useEffect(() => {
     getData();
@@ -47,9 +47,9 @@ export default function Expenses() {
 
   const filteredExpenses = useMemo(() => {
     if (!categoryFilter) return userExpenses;
-  
-    return userExpenses.filter((expense) => 
-      expense.category.some(cat =>
+
+    return userExpenses.filter((expense) =>
+      expense.category.some((cat) =>
         cat.toLowerCase().includes(categoryFilter.toLowerCase())
       )
     );
@@ -75,10 +75,7 @@ export default function Expenses() {
       />
       <ExpenseForm userExpenses={userExpenses} getData={getData} />
       <div>
-        <div>{/* <h2>AQUI IRAN GRAFICAS</h2> */}</div>
-        <div>{/* <h2>AQUI SE FILTRARAN GASTOS</h2> */}</div>
-
-        <div >
+        <div>
           {filteredExpenses.map((eachExpense, i) => {
             return (
               <Card key={i} className="w-full max-w-1/2 mx-auto mb-2">
@@ -123,7 +120,7 @@ export default function Expenses() {
           })}
         </div>
       </div>
-      <ExChart userExpenses={userExpenses}/>
+      <ExChart userExpenses={userExpenses} />
     </div>
   );
 }

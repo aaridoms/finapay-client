@@ -9,6 +9,7 @@ import {
   CardFooter,
   Divider,
   Pagination,
+  Image,
 } from "@nextui-org/react";
 import AddInvestment from "../components/AddInvestment";
 import NewInvestment from "../components/NewInvestment";
@@ -122,7 +123,7 @@ export default function Investment() {
           </div>
         </div>
         <div style={{ width: isMobile ? "370px" : "480px" }}>
-          <img src="https://quietinvestment.com/wp-content/uploads/2023/02/types-of-investment-funds.jpg" alt="asf" style={{marginTop:"44px",marginBottom:"10px", borderRadius:"50px"}} />
+          <Image src="https://quietinvestment.com/wp-content/uploads/2023/02/types-of-investment-funds.jpg" isBlurred isZoomed alt="asf" style={{marginTop:"44px",marginBottom:"10px", borderRadius:"50px"}} />
           <h2>User Investment</h2>
           <Pagination
             total={Math.ceil(userOperations.length / itemsPerPage)}
@@ -151,7 +152,7 @@ export default function Investment() {
                       }}
                     >
                       <b>Earnings: </b>
-                      {earnings.toFixed(2)}€
+                      {earnings ? earnings.toFixed(2) : '0.00'}€
                     </p>
                   </CardHeader>
                 </Card>

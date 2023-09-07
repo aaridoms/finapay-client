@@ -10,9 +10,11 @@ import {
   Input,
   Image,
   Card,
+  Spinner,
   CardBody,
 } from "@nextui-org/react";
 import defaultPic from "../assets/defaultPic.webp";
+import { isMobile } from "react-device-detect";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -100,34 +102,52 @@ export default function Profile() {
   };
 
   if (userProfile === undefined) {
-    return <h3>BUSCANDO</h3>;
+    return <Spinner color="primary" />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Card>
-        <CardBody className="flex flex-row">
+    <div className="flex flex-col items-center justify-center">
+      <Card style={{ marginTop: "70px", width: isMobile ? "370px" : "670px" }}>
+        <CardBody className="flex flex-row content-around ">
           <div>
-            <Image
-              width={300}
-              alt="NextUI hero Image"
-              // src={userProfile.profilePic}
-              src={userProfile.profilePic || defaultPic}
-            />
-            <label>Image: </label>
             <input
+              id="fileUpload"
               type="file"
               name="image"
               onChange={handleFileUpload}
               disabled={isUploading}
+              className="hidden"
             />
+
+            <label htmlFor="fileUpload">
+              <Image
+                width={300}
+                isZoomed
+                isBlurred
+                alt="NextUI hero Image"
+                // src={userProfile.profilePic}
+                src={userProfile.profilePic || defaultPic}
+              />
+            </label>
+
+            {isUploading ? (
+              <Spinner
+                className="flex justify-center"
+                color="primary"
+                style={{marginTop:"10px"}}
+              />
+            ) : (
+              <h4 className="flex justify-center" style={{ marginTop: "10px" }}>
+                Click to change your Image Profile
+              </h4>
+            )}
           </div>
-          
-          {isUploading ? <h3>... uploading image</h3> : null}
-          <div>
+
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+          >
             <h1>Perfil de {userProfile.username} </h1>
             <h3>Email: {userProfile.email}</h3>
-
             <Popover
               placement="bottom"
               showArrow
@@ -156,10 +176,13 @@ export default function Profile() {
                         }}
                       />
                       <Button
-                        className="hidden"
+                        color="primary"
                         type="submit"
                         onClick={handleEmailForm}
-                      />
+                      >
+                        {" "}
+                        +
+                      </Button>
                       {errorMessage ? (
                         <p
                           className="flex justify-center"

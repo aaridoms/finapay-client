@@ -6,26 +6,31 @@ import {
   NavbarItem,
   Link,
   DropdownItem,
-  NavbarMenu,
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
   Avatar,
-  
 } from "@nextui-org/react";
-import { isMobile } from 'react-device-detect';
 import defaultPic from "../assets/defaultPic.webp";
 import logoImg from "../assets/finapayLogoSinFondo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
+
+
 
 export default function App() {
   const navigate = useNavigate();
 
+  const checkActive = (info) => {
+    if (info.isActive) {
+      return "navLinkHome";
+    }
+  };
+
   const [userProfile, setUserProfile] = useState();
 
-  const {  verifyToken } = useContext(AuthContext);
+  const { verifyToken } = useContext(AuthContext);
 
   useEffect(() => {
     getData();
@@ -56,7 +61,7 @@ export default function App() {
   return (
     <Navbar>
       <NavbarBrand>
-        <Link href="/account/summary" color="dark-blue">
+        <NavLink to={"/account/summary"} color="dark-blue">
           <img
             src={logoImg}
             alt="logo"
@@ -64,24 +69,24 @@ export default function App() {
             viewBox="0 0 32 32"
             width="150"
           />
-        </Link>
+        </NavLink>
       </NavbarBrand>
 
-      <NavbarContent className="sm:flex gap-4" justify="left">
-        <NavbarItem>
-          <Link color="foreground" href="/account/expenses">
+      <NavbarContent className="sm:flex gap-4 navLink " justify="left">
+        <NavbarItem >
+          <NavLink className={checkActive} end={true} to={"/account/expenses"}>
             EXPENSES
-          </Link>
+          </NavLink>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/account/summary" aria-current="page" color="dark-blue">
+        
+          <NavLink className={checkActive} to={"/account/summary"}>
             HOME
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/account/investment">
+          </NavLink>
+        
+        <NavbarItem >
+          <NavLink className={checkActive} end={true} to={"/account/investment"}>
             INVESTMENT
-          </Link>
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
 
@@ -92,7 +97,7 @@ export default function App() {
               isBordered
               as="button"
               className="transition-transform"
-              color="secondary"
+              color="primary"
               name="profilePic"
               size="sm"
               src={userProfile.profilePic || defaultPic}

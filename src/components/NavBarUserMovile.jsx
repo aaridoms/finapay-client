@@ -80,7 +80,7 @@ export default function NavBarUserMovile() {
               isBordered
               as="button"
               className="transition-transform"
-              color="secondary"
+              color="primary"
               name="profilePic"
               size="sm"
               src={userProfile.profilePic || defaultPic}

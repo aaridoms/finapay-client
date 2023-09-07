@@ -104,16 +104,17 @@ export default function Summary() {
                 {isDolarActive ? (
                   <Button
                     size="sm"
+                    style={{backgroundColor:"#85d7f7"}}
                     onClick={() => {
                       setIsDolarActive(false);
                     }}
                   >
                     {" "}
-                    €
+                    to €
                   </Button>
                 ) : (
-                  <Button size="sm" onClick={handleEuroToDolars}>
-                    $
+                  <Button color="primary" size="sm" onClick={handleEuroToDolars}>
+                    to $
                   </Button>
                 )}
                 <Chip

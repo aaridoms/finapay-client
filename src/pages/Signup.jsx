@@ -4,7 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import service from "../services/service.config";
 import { EyeFilledIcon } from "../components/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../components/EyeSlashFilledIcon";
-
+import { Link } from "react-router-dom";
 export default function Signup() {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
@@ -21,7 +21,6 @@ export default function Signup() {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleRepeatPasswordChange = (e) => setRepitPassword(e.target.value);
-
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -44,9 +43,9 @@ export default function Signup() {
   };
 
   return (
-    <div role="form" className="flex flex-col gap-4 items-center text-center">
+    <div role="form" className="flex flex-col gap-4 items-center text-center" style={{marginTop:"30px"}}>
       <div className="flex flex-col gap-4">
-        <h3 className="text-default-500 text-sm">SIGN UP</h3>
+        <h3 className="text-default-500 text-sm">WELCOME!</h3>
         <div className="flex w-full flex-wrap items-end mb-6 gap-4">
           <Input
             aria-label="Username"
@@ -130,6 +129,7 @@ export default function Signup() {
             Signup
           </Button>
         </div>
+         
         {errorMessage ? <p className="text-center" style={{color:"red"}}> {errorMessage}</p> : null}
       </div>
     </div>

@@ -11,6 +11,7 @@ import {
   Image,
   Link,
   Button,
+  Spinner,
   Input,
 } from "@nextui-org/react";
 import ExChart from "../components/ExChart";
@@ -61,7 +62,7 @@ export default function Expenses() {
   };
 
   if (userExpenses === undefined) {
-    return <h3>..Buscando</h3>;
+    return <Spinner color="primary" style={{paddingTop:"10px"}} />;
   }
 
   return (

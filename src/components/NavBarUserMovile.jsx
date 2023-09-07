@@ -9,6 +9,7 @@ import {
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
+  Progress,
   Avatar,
   NavbarMenuItem,
   NavbarMenu,
@@ -18,13 +19,14 @@ import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import { NavLink, useNavigate } from "react-router-dom";
 import logoImg from "../assets/finapayLogoSinFondo.png";
+import defaultPic from "../assets/defaultPic.webp";
 import Footer from "./Footer"
 
 export default function NavBarUserMovile() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [userProfile, setUserProfile] = useState();
+  const [userProfile, setUserProfile] = useState([]);
   const { verifyToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -50,7 +52,13 @@ export default function NavBarUserMovile() {
   };
 
   if (userProfile === undefined) {
-    return <h3>BUSCANDO</h3>;
+    return <Progress
+    size="sm"
+    isIndeterminate
+    
+    className="max-w-md"
+    style={{paddingTop: "10px",display:"flex" , justifyContent:"center",}}
+  />;
   }
 
   return (
@@ -76,7 +84,7 @@ export default function NavBarUserMovile() {
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end">
+      <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
               isBordered
@@ -87,23 +95,26 @@ export default function NavBarUserMovile() {
               size="sm"
               src={userProfile.profilePic || defaultPic}
             />
+            
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2" textValue="hola">
               <p className="font-semibold">Signed in as </p>
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
+            <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
+              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userProfile.funds} €</p>
+            </DropdownItem>
             <DropdownItem
               key="settings"
               onClick={() => {
-                setIsMenuOpen(false);
                 navigate("/account/profile");
               }}
             >
-              My Settings
+              <p >My Settings</p>
             </DropdownItem>
             <DropdownItem onClick={handleLogout} key="logout" color="danger">
-              Logout
+              <p style={{color: "red"}}>Logout</p>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

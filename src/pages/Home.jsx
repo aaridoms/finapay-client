@@ -1,16 +1,27 @@
-import Login from "../components/Login"
-import { Button } from "@nextui-org/react"
-
+import Login from "../components/Login";
+import { Link } from "react-router-dom";
+import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate()
   return (
-    <div className="main-container back-home">
-        <h1 className="main-title">Bienvenido a Nuestra Página</h1>
-        <h2 className="sub-title">Estamos encantados de tenerte aquí</h2>
-        <a href="/signup" className="main-btn" role="button" aria-label="Descubre más sobre nosotros.">Descubre Más</a>
-        <Login/>
-        <footer>
-            <p className="footer-text">Derechos de autor &copy; 2023 Tu Compañía</p>
-        </footer>
+    <div className="main-container back-home" style={{borderRadius:"20px"}}>
+      <h1 className="main-title" style={{ color: "white",fontSize:"2rem",paddingTop:"60px" }}>
+        WELCOME TO FINAPAY
+      </h1>
+
+      <Button
+        style={{margin:"40px",backgroundColor:"white", color:"blue"}}
+        
+        variant="faded"
+        onClick={() => navigate("/signup")}
+      >
+        Sign Up for Free
+      </Button>
+      <Login />
+      <footer>
+        <p className="footer-text">Derechos de autor &copy; 2023 Tu Compañía</p>
+      </footer>
     </div>
-  )
+  );
 }

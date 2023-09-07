@@ -10,6 +10,7 @@ import {
   Dropdown,
   DropdownMenu,
   Avatar,
+  Progress
 } from "@nextui-org/react";
 import defaultPic from "../assets/defaultPic.webp";
 import logoImg from "../assets/finapayLogoSinFondo.png";
@@ -28,7 +29,7 @@ export default function App() {
     }
   };
 
-  const [userProfile, setUserProfile] = useState();
+  const [userProfile, setUserProfile] = useState([]);
 
   const { verifyToken } = useContext(AuthContext);
 
@@ -55,7 +56,14 @@ export default function App() {
   };
 
   if (userProfile === undefined) {
-    return <h3>BUSCANDO</h3>;
+    return <Progress
+    size="sm"
+    isIndeterminate
+    
+    className="max-w-md"
+    style={{paddingTop: "10px",display:"flex" , justifyContent:"center",}}
+
+  />;
   }
 
   return (

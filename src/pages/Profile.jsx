@@ -101,7 +101,7 @@ export default function Profile() {
   };
 
   if (userProfile === undefined) {
-    return <Spinner color="primary" />;
+    return <Spinner color="primary" style={{paddingTop:"10px"}}/>;
   }
 
   return (

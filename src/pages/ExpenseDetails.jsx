@@ -10,7 +10,6 @@ import {
   CardFooter,
   Divider,
   Link,
-  Image,
   Button,
   Chip,
 } from "@nextui-org/react";
@@ -53,19 +52,16 @@ export default function ExpenseDetails() {
 
   return (
     <div style={{ paddingTop: "100px" }}>
-      <Card className="max-w-[400px]">
+      <Card className="max-w-[400px] mb-2">
         <CardHeader className="flex justify-between" >
-         
             <p className="text-small text-default-500">
               <Chip color="default">{oneExpense.category}</Chip>
             </p>
             <p className="text-md hover:font-bold">{oneExpense.name}</p>
             <Chip color="success" variant="shadow" className="text-3xl font-bold">{oneExpense.amount.toFixed(2)} €</Chip>
-            {/* <p>Amount: {oneExpense.amount} €</p> */}
-         
         </CardHeader>
         <Divider />
-        <CardBody style={{ padding: "0px 50px 0px 50px" }} > 
+        <CardBody style={{ padding: "0px 100px 0px 100px", marginTop: "20px", marginBottom: "20px" }} > 
           <p className="flex justify-center text-center" >{oneExpense.notes}</p>
         </CardBody>
         <Divider />
@@ -73,19 +69,20 @@ export default function ExpenseDetails() {
           <div>
             <p>{moment(oneExpense.date).format("lll")}</p>
           </div>
-          <div>
+          <div style={{display: "flex", gap: "20px"}}>
             <ExpenseForm
               isEdit={isEdit}
               idExpense={params.idExpense}
               getData={getData}
               oneExpense={oneExpense}
             />
-            <Button color="danger" variant="bordered" onClick={handleDelete} size="sm">
+            <Button color="danger" variant="shadow" onClick={handleDelete} size="sm">
               Delete Expense
             </Button>
           </div>
         </CardFooter>
       </Card>
+      <Button as={Link} color="primary" variant="shadow" onClick={() => navigate('/account/expenses')}> Back </Button>
     </div>
   );
 }

@@ -64,7 +64,7 @@ export default function ExChart(props) {
 
   return (
     <div>
-      <Bar type="bar" data={data} options={options} />
+      <Bar type="bar" data={data} options={options}/>
     </div>
   )
 }

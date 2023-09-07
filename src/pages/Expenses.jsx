@@ -70,7 +70,7 @@ export default function Expenses() {
         type="text"
         placeholder="Search by category"
         onChange={handleSearch}
-        className="border-2 border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         role="search"
       />
       <ExpenseForm userExpenses={userExpenses} getData={getData} />
@@ -98,7 +98,7 @@ export default function Expenses() {
                       href={`/account/expenses/${eachExpense._id}/details`}
                       as={Link}
                       // color="primary"
-                      variant="solid"
+                      variant="shadow"
                       size="sm"
                       style={{ backgroundColor: "#c3b169" }}
                     >
@@ -107,7 +107,7 @@ export default function Expenses() {
 
                     <Button
                       color="danger"
-                      variant="bordered"
+                      variant="shadow"
                       onClick={() => handleDelete(eachExpense._id)}
                       size="sm"
                     >

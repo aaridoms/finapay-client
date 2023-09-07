@@ -10,9 +10,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <NextUIProvider>
     <BrowserRouter>
       <AuthWrapper>
-        {/* <main className="dark text-foreground bg-background"> */}
+        <main className="dark text-foreground bg-background">
           <App />
-        {/* </main> */}
+        </main>
       </AuthWrapper>
     </BrowserRouter>
   </NextUIProvider>

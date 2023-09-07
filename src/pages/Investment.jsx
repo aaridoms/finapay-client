@@ -151,7 +151,7 @@ export default function Investment() {
                       }}
                     >
                       <b>Earnings: </b>
-                      {earnings}€
+                      {earnings.toFixed(2)}€
                     </p>
                   </CardHeader>
                 </Card>

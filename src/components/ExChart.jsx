@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Chart } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 export default function ExChart(props) {
 
@@ -12,14 +12,23 @@ export default function ExChart(props) {
     return acc;
   }, {});
 
-  let labels = [...new Set([...Object.keys(expensesByDate)])].sort();
+  let expensesByCategory = props.userExpenses.reduce((acc, expense) => {
+    let category = expense.category;
+    if (!acc[category]) {
+      acc[category] = 0;
+    }
+    acc[category] += expense.amount;
+    return acc;
+  }, {});
+
+  let labels = [...new Set([...Object.keys(expensesByCategory)])].sort();
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "Expenses Amount",
-        data: labels.map(date => expensesByDate[date] || 0),
+        label: "Expenses by category",
+        data: labels.map(date => expensesByCategory[date] || 0),
         backgroundColor: ["rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(54, 162, 235, 1)"],
         borderWidth: 1,
@@ -28,12 +37,26 @@ export default function ExChart(props) {
   };
 
   const options = {
+    indexAxis: "y",
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
     scales: {
       x: {
-        type: 'category',
+        ticks: {
+          beginAtZero: true,
+        },
       },
-      y: {
-        beginAtZero: true,
+    },
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+        text: "Expenses by Category",
       },
     },
   };
@@ -41,7 +64,7 @@ export default function ExChart(props) {
 
   return (
     <div>
-      <Chart type="bar" data={data} options={options} />
+      <Bar type="bar" data={data} options={options} />
     </div>
   )
 }

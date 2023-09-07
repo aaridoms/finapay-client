@@ -67,7 +67,7 @@ export default function AddFunds(props) {
       onClose={handlePopoverClose}
     >
       <PopoverTrigger>
-        <Button color="primary" onClick={handlePopoverOpen}>
+        <Button style={{backgroundColor: "#67cdf5"}} variant="shadow" onClick={handlePopoverOpen}>
           Add Funds
         </Button>
       </PopoverTrigger>

@@ -229,7 +229,7 @@ export default function Summary() {
                           <b>- {transaction.amount}€</b>
                         </p>
                       ) : (
-                        <p style={{ color: "green" }}>
+                        <p style={{ color: "green" }} >
                           <b>+ {transaction.amount}€</b>
                         </p>
                       )}

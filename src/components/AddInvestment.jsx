@@ -56,7 +56,7 @@ export default function AddInvestment(props) {
       onClose={handlePopoverClose}
     >
       <PopoverTrigger>
-        <Button color="primary" onClick={handlePopoverOpen}>
+        <Button style={{ backgroundColor: "#67cdf5" }} onClick={handlePopoverOpen}>
           Join
         </Button>
       </PopoverTrigger>

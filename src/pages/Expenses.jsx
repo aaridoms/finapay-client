@@ -100,9 +100,10 @@ export default function Expenses() {
                     <Button
                       href={`/account/expenses/${eachExpense._id}/details`}
                       as={Link}
-                      color="primary"
+                      // color="primary"
                       variant="solid"
                       size="sm"
+                      style={{ backgroundColor: "#c3b169" }}
                     >
                       Details
                     </Button>

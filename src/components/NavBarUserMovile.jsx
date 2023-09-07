@@ -25,7 +25,8 @@ import Footer from "./Footer"
 export default function NavBarUserMovile() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [userFunds,setUserFunds] = useState(0)
+ 
   const [userProfile, setUserProfile] = useState([]);
   const { verifyToken } = useContext(AuthContext);
 
@@ -38,6 +39,7 @@ export default function NavBarUserMovile() {
       const response = await service.get("/account/profile");
       // console.log(response.data);
       setUserProfile(response.data);
+      setUserFunds(response.data.funds.toFixed(2))
       // getData();
     } catch (error) {
       console.log(error);
@@ -103,7 +105,7 @@ export default function NavBarUserMovile() {
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
-              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userProfile.funds} €</p>
+              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userFunds}€</p>
             </DropdownItem>
             <DropdownItem
               key="settings"

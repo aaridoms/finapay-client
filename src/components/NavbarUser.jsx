@@ -30,7 +30,7 @@ export default function App() {
   };
 
   const [userProfile, setUserProfile] = useState([]);
-
+  const [userFunds,setUserFunds] = useState(0)
   const { verifyToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function App() {
       const response = await service.get("/account/profile");
       // console.log(response.data);
       setUserProfile(response.data);
+      setUserFunds(response.data.funds.toFixed(2))
       // getData();
     } catch (error) {
       console.log(error);
@@ -118,7 +119,7 @@ export default function App() {
               <p className="font-semibold">{userProfile.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" className="gap-2" color="success" textValue="hola">
-              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userProfile.funds.toFixed(2)} €</p>
+              <p className="font-semibold" style={{color: "#18C964"}}>Your Funds: {userFunds}€</p>
             </DropdownItem>
             <DropdownItem
               key="settings"

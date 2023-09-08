@@ -169,7 +169,7 @@ export default function ExpenseForm(props) {
                   Create
                 </Button>
               </ModalFooter>
-              {errorMessage ? <p> {errorMessage}</p> : null}
+              {errorMessage ? <p style={{color:"red" , display:"flex", justifyContent:"center" ,paddingBottom:"5px"}}> {errorMessage}</p> : null}
             </>
           )}
         </ModalContent>

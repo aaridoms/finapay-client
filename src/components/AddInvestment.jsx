@@ -23,7 +23,6 @@ export default function AddInvestment(props) {
         amount,
       });
       
-      console.log(userInfo.data)
       props.getData();
       setIsPopoverOpen(false);
     } catch (error) {

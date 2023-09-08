@@ -40,7 +40,6 @@ export default function Investment() {
       const userOperation = await service.get(
         "/account/investments/user-investment"
       );
-      // console.log(allInv.data)
 
       setAllInvestment(allInv.data);
       setUserOperations(userOperation.data);

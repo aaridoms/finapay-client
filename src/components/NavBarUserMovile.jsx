@@ -37,10 +37,8 @@ export default function NavBarUserMovile() {
   const getData = async () => {
     try {
       const response = await service.get("/account/profile");
-      // console.log(response.data);
       setUserProfile(response.data);
       setUserFunds(response.data.funds.toFixed(2))
-      // getData();
     } catch (error) {
       console.log(error);
       navigate("/error");

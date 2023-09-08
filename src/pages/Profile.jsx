@@ -49,12 +49,6 @@ export default function Profile() {
 
     try {
       const response = await uploadImageService(uploadData);
-      // or below line if not using services
-      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
-
-      // setImageUrl(response.data.imageUrl);
-      //                          |
-      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
 
       setIsUploading(false); // to stop the loading animation
       getData();
@@ -66,7 +60,6 @@ export default function Profile() {
   const getData = async () => {
     try {
       const response = await service.get("/account/profile");
-      console.log(response.data);
       setUserProfile(response.data);
     } catch (error) {
       console.log(error);

@@ -23,7 +23,7 @@ export default function AddFunds(props) {
       });
       props.getData();
     } catch (error) {
-      console.log(error);
+      (error);
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {

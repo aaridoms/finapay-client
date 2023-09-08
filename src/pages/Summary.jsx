@@ -49,7 +49,6 @@ export default function Summary() {
   const getData = async () => {
     try {
       const response = await service.get("/account/summary");
-      console.log(response.data);
       setUserData(response.data.foundUser);
       setTransactionData(response.data.foundTransaction);
       setAllUsers(response.data.allUsers);
@@ -64,7 +63,6 @@ export default function Summary() {
       const response = await axios.get(
         "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/usd.json"
       );
-      console.log(response.data.usd * userData.funds);
       setDolars(response.data.usd * userData.funds);
       setIsDolarActive(true);
     } catch (error) {

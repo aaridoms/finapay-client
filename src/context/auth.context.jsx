@@ -1,6 +1,6 @@
 import { createContext,useEffect,useState } from "react";
 import service from "../services/service.config";
-
+import { Spinner } from "@nextui-org/react";
 const AuthContext = createContext()
 
 

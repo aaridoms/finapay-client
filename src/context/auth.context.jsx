@@ -42,10 +42,10 @@ function AuthWrapper(props) {
   
     // CLAUSLA DE GUARDIA PARA TODA LA PAGINA
   
-//todo CAMBIAR POR SPINNER 
+
     
     if (isPageLoading===true) {
-      return <h3>... Validando Credenciales</h3>;
+      return <Spinner color="primary" style={{paddingTop:"20px"}}/>;
     }
   
     return (

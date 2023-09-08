@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Popover,
@@ -19,7 +19,6 @@ export default function AddInvestment(props) {
   const handleJoinForm = async (e) => {
     e.preventDefault();
     try {
-      // console.log(funds)
       const userInfo = await service.post(`/account/investments/${props.idInvestment}/join`, {
         amount,
       });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Popover,
@@ -18,7 +18,6 @@ export default function AddFunds(props) {
 
   const handleFundsForm = async () => {
     try {
-      // console.log(funds)
       await service.post("/account/add-funds", {
         funds,
       });

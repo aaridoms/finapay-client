@@ -4,7 +4,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
@@ -18,8 +17,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 
-
-
+// Este es el navbar que hay después de loguearse
 export default function App() {
   const navigate = useNavigate();
 

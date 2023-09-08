@@ -6,13 +6,10 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
   Select,
   SelectSection,
   SelectItem,
-  Avatar,
 } from "@nextui-org/react";
 
 import { useState } from "react";
@@ -20,6 +17,7 @@ import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
+// Utilizamos este tanto para crear como para editar un gasto (props.isEdit)
 export default function ExpenseForm(props) {
   const navigate = useNavigate();
   const headingClasses =

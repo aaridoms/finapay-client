@@ -4,13 +4,16 @@ import { Button, Input } from "@nextui-org/react";
 import service from "../services/service.config";
 import { EyeFilledIcon } from "../components/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../components/EyeSlashFilledIcon";
-import { Link } from "react-router-dom";
+
+// Este componente permite al usuario registrarse en la aplicación
 export default function Signup() {
+
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-  const [isVisibleTwo, setIsVisibleTwo] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleVisibilityTwo = () => setIsVisibleTwo(!isVisibleTwo);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleTwo, setIsVisibleTwo] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +24,7 @@ export default function Signup() {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleRepeatPasswordChange = (e) => setRepitPassword(e.target.value);
+
   const handleSignup = async (e) => {
     e.preventDefault();
 

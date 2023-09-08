@@ -3,6 +3,7 @@ import { Chart } from "react-chartjs-2";
 import Charts from "chart.js/auto";
 
 export default function ChartBar(props) {
+  // Sumamos los gastos por fecha y los agrupamos por fecha en un objeto de la forma { "DD/MM": amount }
   let expensesByDate = props.userData.expenses.reduce((acc, expense) => {
     let date = moment(expense.date).format("DD/MM");
     if (!acc[date]) {
@@ -39,6 +40,7 @@ export default function ChartBar(props) {
     return acc;
   }, {});
   
+  // para las labels del eje x, cogemos las fechas de los gastos y las ordenamos de menor a mayor (las fechas son strings, por lo que se ordenan alfabéticamente)
   let labels = [...new Set([...Object.keys(expensesByDate), ...Object.keys(transactionsByDatePos), ...Object.keys(transactionsByDateNeg)])].sort();
   
   const data = {

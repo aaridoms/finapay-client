@@ -4,7 +4,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarMenuToggle,
-  Link,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
@@ -22,6 +21,7 @@ import logoImg from "../assets/finapayLogoSinFondo.png";
 import defaultPic from "../assets/defaultPic.webp";
 import Footer from "./Footer"
 
+// Este es el navbar que hay después de loguearse en mobile (responsive) iyilizando isMobile de react-device-detect
 export default function NavBarUserMovile() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   Link,
@@ -12,8 +11,7 @@ import Login from "./Login";
 import { isMobile } from "react-device-detect";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
-
+// Este es el navbar que hay antes de loguearse
 export default function App() {
 
   const navigate = useNavigate();

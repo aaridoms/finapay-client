@@ -7,7 +7,6 @@ import {
   Card,
   CardBody,
   CardHeader,
-  CircularProgress,
   Chip,
   Progress,
   CardFooter,
@@ -24,7 +23,9 @@ import ChartBar from "../components/ChartBar";
 import { isMobile } from "react-device-detect";
 import summaryImg from "../assets/Summary.png"
 
+// Muestra el resumen de la cuenta del usuario
 export default function Summary() {
+
   const itemsPerPage = 6;
 
   const [userData, setUserData] = useState();
@@ -36,7 +37,7 @@ export default function Summary() {
   const [dolars, setDolars] = useState(0);
   const [isDolarActive, setIsDolarActive] = useState(false);
   
-
+  // Esto es para la paginacion de las transacciones
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = transactionData.slice(indexOfFirstItem, indexOfLastItem);
@@ -57,6 +58,7 @@ export default function Summary() {
     }
   };
 
+  // API para convertir de euros a dolares
   const handleEuroToDolars = async () => {
     try {
       const response = await axios.get(
@@ -78,8 +80,9 @@ export default function Summary() {
     <div className="flex flex-col mx-auto container" style={{marginTop:"30px"}}>
       <div className="flex justify-between flex-wrap">
         <div>
+          {/* Card para los funds y convertir el dinero en USD/EUR */}
           <Card
-            style={{ margin: "15px 10px", height: "200px", width: "370px" }}
+            style={{ margin: "15px 0px", height: "200px", width: "370px" }}
           >
             <CardBody
               className="flex flex-col text-left gap-4"
@@ -138,8 +141,11 @@ export default function Summary() {
             </CardFooter>
           </Card>
         </div>
+
         <Image isZoomed isBlurred src={summaryImg} alt="" width={"370px"} />
+
         <div>
+          {/* Card para el nombre del usuario y los fotones de añadir funds(addFunds) y enviar dinero(TransactionForm) */}
           <Card style={{ marginTop: "15px", height: "200px", width: "370px" }}>
             <CardBody style={{ fontSize: "30px", padding: "10px" }}>
               <h1 style={{ display: "flex", justifyContent: "center" }}>
@@ -167,7 +173,9 @@ export default function Summary() {
           </Card>
         </div>
       </div>
+
       <Divider />
+
       <div className="flex flex-row flex-wrap">
         <div>
           <Pagination
@@ -177,6 +185,7 @@ export default function Summary() {
             className="mt-2"
             showShadow 
           />
+          {/* Card para las transacciones con su paginacion*/}
           <Card
             style={{display:"flex",justifyContent:"center", marginTop: "20px", width: isMobile ? "370px" : "470px" }}
           >
@@ -189,9 +198,6 @@ export default function Summary() {
                 />
               )}
             {currentItems.map((transaction, i) => {
-              // if (i >= 6) {
-              //   return;
-              // }
 
               let userNameTo = transaction.to.username;
               let userNameFrom = transaction.from.username;
@@ -240,7 +246,6 @@ export default function Summary() {
                       </div>
                     </div>
                     <div>
-                      {/* <p>{transaction.concept}</p> */}
                       {transaction.from._id === userData._id ? (
                         <p style={{ color: "red" }}>
                           <b>- {transaction.amount}€</b>
@@ -261,6 +266,7 @@ export default function Summary() {
         <div
           style={{ margin: " 60px 30px", width: isMobile ? "370px" : "600px" }}
         >
+          {/* Chart para la grafica de las transacciones */}
           <ChartBar transactionData={transactionData} userData={userData} />
         </div>
       </div>

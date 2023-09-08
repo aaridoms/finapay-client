@@ -1,16 +1,6 @@
-import moment from "moment";
 import { Bar } from "react-chartjs-2";
 
 export default function ExChart(props) {
-
-  let expensesByDate = props.userExpenses.reduce((acc, expense) => {
-    let date = moment(expense.date).format("DD/MM/YYYY");
-    if (!acc[date]) {
-      acc[date] = 0;
-    }
-    acc[date] += expense.amount;
-    return acc;
-  }, {});
 
   let expensesByCategory = props.userExpenses.reduce((acc, expense) => {
     let category = expense.category;

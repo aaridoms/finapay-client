@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { isMobile } from "react-device-detect";
 
+// verificamos si el usuario está logueado o no con el token
 export default function App() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { verifyToken } = useContext(AuthContext);
@@ -25,9 +26,12 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+  
+  const handleIsChecked = (e) => setIsChecked(e.target.checked);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,6 +40,7 @@ export default function App() {
       const response = await service.post("/auth/login", {
         email,
         password,
+        isChecked,
       });
 
       localStorage.setItem("authToken", response.data.authToken);
@@ -92,6 +97,8 @@ export default function App() {
                     classNames={{
                       label: "text-small",
                     }}
+                    checked={isChecked}
+                    onChange={handleIsChecked}
                   >
                     <p style={{color: "#fff"}}>Remember me</p>
                   </Checkbox>
@@ -104,8 +111,8 @@ export default function App() {
                 <Button color="primary" onClick={handleLogin} onPress={onClose}>
                   Login
                 </Button>
-                {errorMessage ? <p> {errorMessage}</p> : null}
               </ModalFooter>
+              {errorMessage ? <p style={{color: "red", display: "flex", justifyContent: "center", paddingBottom: "5px"}}> {errorMessage}</p> : null}
             </>
           )}
         </ModalContent>

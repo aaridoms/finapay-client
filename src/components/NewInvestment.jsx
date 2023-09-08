@@ -6,19 +6,17 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
   Select,
   SelectSection,
   SelectItem,
-  Avatar,
 } from "@nextui-org/react";
 import { useState } from "react";
 import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
+// Este es el modal que se abre para agregar una inversión nueva solo el admin puede crear una inversión nueva
 export default function NewInvestment(props) {
   const navigate = useNavigate();
   const headingClasses =

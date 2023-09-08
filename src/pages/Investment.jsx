@@ -16,6 +16,7 @@ import AddInvestment from "../components/AddInvestment";
 import NewInvestment from "../components/NewInvestment";
 import { isMobile } from "react-device-detect";
 
+// Muestra la lista de inversiones disponibles para el usuario y las inversiones que ha hecho
 export default function Investment() {
   const navigate = useNavigate();
   const itemsPerPage = 8;

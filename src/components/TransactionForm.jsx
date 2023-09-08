@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import service from "../services/service.config";
 import {
   Modal,
@@ -8,9 +8,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
   Select,
   SelectSection,
   SelectItem,
@@ -19,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
+// Este es el modal que se abre para enviar dinero a otro usuario
 export default function TransactionForm(props) {
   const navigate = useNavigate();
 

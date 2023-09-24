@@ -11,6 +11,7 @@ import {
   Spinner,
   Pagination,
   Image,
+  Button,
 } from "@nextui-org/react";
 import AddInvestment from "../components/AddInvestment";
 import NewInvestment from "../components/NewInvestment";
@@ -43,6 +44,21 @@ export default function Investment() {
 
       setAllInvestment(allInv.data);
       setUserOperations(userOperation.data);
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        console.log(error);
+        navigate("/error");
+      }
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await service.delete(`/account/investments/${id}/delete`);
+      getData();
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
@@ -101,6 +117,7 @@ export default function Investment() {
                   <Divider />
                   <CardFooter className="flex flex-row justify-between">
                     <AddInvestment getData={getData} idInvestment={_id} />
+                    {roleAdmin === "Admin" && <Button color="danger" variant="shadow" onClick={() => handleDelete(eachInvestment._id)}>Delete</Button>}
                     {errorMessage ? <p> {errorMessage}</p> : null}
                     <svg
                       width="40"

@@ -35,6 +35,10 @@ export default function Investment() {
     getData();
   }, []);
 
+  setTimeout(() => {
+      getData();
+  }, 6000);
+
   const getData = async () => {
     try {
       const allInv = await service.get("/account/investments");

@@ -22,7 +22,7 @@ import defaultPic from "../assets/defaultPic.webp";
 import Footer from "./Footer"
 
 // Este es el navbar que hay después de loguearse en mobile (responsive) iyilizando isMobile de react-device-detect
-export default function NavBarUserMovile() {
+export default function NavBarUserMovile(props) {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userFunds,setUserFunds] = useState(0)
@@ -33,6 +33,13 @@ export default function NavBarUserMovile() {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (props.newData === true) {
+      getData();
+      props.setNewData(false);
+    }
+  }, [props.newData]);
 
   const getData = async () => {
     try {

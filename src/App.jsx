@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "tailwindcss/tailwind.css";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
@@ -20,16 +20,17 @@ import Footer from "./components/Footer";
 
 function App() {
   const { isUserActive } = useContext(AuthContext);
+  const [newData, setNewData] = useState(false);
 
   return (
     <>
       {isUserActive === true ? (
         isMobile ? (
           // Componente de Navbar para dispositivos móviles
-          <NavBarUserMovile />
+          <NavBarUserMovile newData={newData} setNewData={setNewData} />
         ) : (
           // Componente de Navbar para escritorio y tablet
-          <NavbarUser />
+          <NavbarUser newData={newData} setNewData={setNewData}/>
         )
       ) : (
         <Navbar />
@@ -39,8 +40,8 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/signup" element={<Signup />} />
-        <Route path="/account/summary" element={<Summary />} />
-        <Route path="/account/profile" element={<Profile />} />
+        <Route path="/account/summary" element={<Summary setNewData={setNewData} />} />
+        <Route path="/account/profile" element={<Profile setNewData={setNewData} />} />
         <Route path="/account/expenses" element={<Expenses />} />
         <Route
           path="/account/expenses/:idExpense/details"

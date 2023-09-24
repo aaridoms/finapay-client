@@ -17,7 +17,7 @@ import defaultPic from "../assets/defaultPic.webp";
 import { isMobile } from "react-device-detect";
 
 // Muestra el perfil del usuario y permite cambiar su email y su imagen de perfil
-export default function Profile() {
+export default function Profile(props) {
 
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState();
@@ -49,7 +49,7 @@ export default function Profile() {
 
     try {
       const response = await uploadImageService(uploadData);
-
+      props.setNewData(true);
       setIsUploading(false); // to stop the loading animation
       getData();
     } catch (error) {

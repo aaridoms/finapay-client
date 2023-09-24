@@ -21,6 +21,7 @@ export default function AddFunds(props) {
       await service.post("/account/add-funds", {
         funds,
       });
+      props.setNewData(true);
       props.getData();
     } catch (error) {
       (error);

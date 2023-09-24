@@ -18,7 +18,7 @@ import { AuthContext } from "../context/auth.context";
 import service from "../services/service.config";
 
 // Este es el navbar que hay después de loguearse
-export default function App() {
+export default function App(props) {
   const navigate = useNavigate();
 
   const checkActive = (info) => {
@@ -33,13 +33,24 @@ export default function App() {
 
   useEffect(() => {
     getData();
+    
   }, []);
+
+  useEffect(() => {
+    if (props.newData === true) {
+      getData();
+      props.setNewData(false);
+    }
+  }, [props.newData]);
+
 
   const getData = async () => {
     try {
       const response = await service.get("/account/profile");
+
       setUserProfile(response.data);
       setUserFunds(response.data.funds.toFixed(2))
+      
     } catch (error) {
       console.log(error);
       navigate("/error");

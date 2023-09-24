@@ -24,7 +24,7 @@ import { isMobile } from "react-device-detect";
 import summaryImg from "../assets/Summary.png"
 
 // Muestra el resumen de la cuenta del usuario
-export default function Summary() {
+export default function Summary(props) {
 
   const itemsPerPage = 6;
 
@@ -159,6 +159,7 @@ export default function Summary() {
                   getData={getData}
                   setIsLoadingAddFunds={setIsLoadingAddFunds}
                   setIsDolarActive={setIsDolarActive}
+                  setNewData={props.setNewData}
                 />
                 <TransactionForm
                   getData={getData}

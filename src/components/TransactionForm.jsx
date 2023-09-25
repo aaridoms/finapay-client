@@ -64,7 +64,7 @@ export default function TransactionForm(props) {
       handleTransaction();
 
       clearInterval(intervalId);
-    }, 3000);
+    }, 1500);
   };
 
   return (

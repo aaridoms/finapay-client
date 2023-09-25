@@ -170,7 +170,7 @@ export default function Investment() {
                     <p
                       className="text-md"
                       style={{
-                        color: earnings > 0 ? 'green' : (earnings < 0 ? 'red' : 'yellow'),
+                        color: earnings > 0 ? 'green' : (earnings < 0 ? 'red' : '#efb810'),
                      }}
                     >
                       <b>Earnings: </b>

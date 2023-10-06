@@ -21,7 +21,7 @@ export default function Home() {
     <div>
       <div
         className="main-container back-home"
-        style={{ borderRadius: "20px" }}
+        style={{ borderRadius: "20px"}}
       >
         <h1
           className="main-title"
@@ -37,6 +37,10 @@ export default function Home() {
         >
           Sign Up for Free
         </Button>
+        <div style={{display:"flex", justifyContent:"center", marginBottom:"10px"}}>
+        <p  style={{backgroundColor:"black", width:"max-content",borderRadius:"10px"}}>Use test@test.com Test1234 for quick view of the content</p>
+
+        </div>
         <Login />
       </div>
 <hr style={{marginTop:"40px"}}/>

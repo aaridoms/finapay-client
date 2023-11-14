@@ -43,6 +43,12 @@ export default function Home() {
         </div>
         <Login />
       </div>
+      <hr style={{marginTop:"40px"}}/>
+      <div style={{ display:"flex", justifyContent:"center", marginTop: "40px" }}>
+      <iframe width="600" height="315" src="https://www.youtube.com/embed/_HUTVUn1VKE?si=KXEk7nR12fUagVeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen controls="0"></iframe>
+
+      </div>
+      
 <hr style={{marginTop:"40px"}}/>
       {isMobile ? (
         <div

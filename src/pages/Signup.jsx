@@ -50,13 +50,13 @@ export default function Signup() {
     <div role="form" className="flex flex-col gap-4 items-center text-center" style={{marginTop:"30px"}}>
       <div className="flex flex-col gap-4">
         <h3 className="text-default-500 text-sm">WELCOME!</h3>
-        <div className="flex w-full flex-wrap items-end mb-6 gap-4">
+        <div className="flex flex-wrap items-end mb-6 gap-4" style={{width:"400px"}}>
           <Input
             aria-label="Username"
             key="username"
             type="text"
             label="Username"
-            labelPlacement="outside"
+        
             value={username}
             onChange={handleUsernameChange}
             className="flex-grow"
@@ -66,15 +66,11 @@ export default function Signup() {
             key="email"
             type="email"
             label="Email"
-            labelPlacement="outside"
+            
             value={email}
             onChange={handleEmailChange}
             className="flex-grow"
           />
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex w-full flex-wrap items-end mb-6 gap-4">
           <Input
             aria-label="Password"
             label="Password"
@@ -122,13 +118,18 @@ export default function Signup() {
             type={isVisibleTwo ? "text" : "password"}
           />
         </div>
-        <div className="flex w-full flex-wrap items-center mb-6 gap-4">
+      </div>
+      <div className="flex flex-col gap-2">
+        
+       
+        <div className="flex w-full flex-wrap items-center mb-6 gap-4" style={{width:"130px"}}>
           <Button
             role="button"
             aria-label="Signup"
             type="submit"
             onClick={handleSignup}
             className="flex-grow"
+            style={{width:"48px"}}
           >
             Signup
           </Button>
